@@ -14,11 +14,11 @@ class Autenticacion {
     $('.modal').modal('close')
   }
 
-  crearCuentaEmailPass (email, password, nombres) {
+  crearCuentaEmailPass (email, password, name) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(result => {
         result.user.updateProfile({
-          displayname : nombres
+          displayname : name
         })
 
         const configuracion = {

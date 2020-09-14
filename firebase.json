@@ -1,33 +1,17 @@
 {
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
   "hosting": {
     "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "redirects" : [{
-      "source": "/posts",
-      "destination": "/",
-      "type": 301
-    }
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**/*.@(jpg|jpeg|gif|png)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=7200"
-          }
-        ]
-      }
     ]
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

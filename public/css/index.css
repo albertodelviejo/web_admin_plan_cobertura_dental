@@ -115,12 +115,13 @@ body {
   margin: 0px;
 }
 .menu ul li {
-  display: block;
+  display: none;
   line-height: 40px;
   transition: 0.6s;
 }
 .menu ul li:hover {
   background: #126798;
+  display: block;
 }
 .menu ul li a {
   color: #fff;
@@ -131,6 +132,27 @@ body {
 .menu ul li a:hover {
   font-size: 17px;
 }
+
+.menu li ul{
+  display: none;
+  position: absolute;
+  background: #219cca;
+}
+
+.menu li:hover > ul {
+  display: block;
+}
+
+.menu li ul li ul{
+  display: none;
+  position: absolute;
+  background: #219cca;
+}
+
+.menu li ul li:hover > ul {
+  display: block;
+}
+
 .footer {
   height: 100%;
   background: #126798;
@@ -152,7 +174,7 @@ body {
   color: #fff;
   display: flex;
   flex-direction: column;
-label
+
 }
 .footer .contenedor-footer .formulario-contactenos .form-col1 input,
 .footer .contenedor-footer .formulario-contactenos .form-col2 input {
@@ -253,7 +275,7 @@ label
   font-family: "icono_estrellita_llena";
 }
 .posts .post .post-titulo {
-  text-align: center;
+  text-align: left;
   background: #eee;
   font-family: 'Montserrat', sans-serif;
   padding: 0.5em;
@@ -274,11 +296,11 @@ label
   height: 300px;
 }
 .posts .post .post-descripcion {
-  text-align: center;
+  text-align: left;
   background: #eee;
   font-family: 'Allerta', sans-serif;
   padding: 0.5em;
-  font-size: 17px;
+  font-size: 25px;
 }
 .posts .post .post-videolink {
   text-align: center;
@@ -419,12 +441,12 @@ label
     display: inline-block;
   }
   .posts .post {
-    display: inline-block;
+    display: block;
     margin-top: 25px;
-    width: 47%;
+    width: 100%;
   }
   .posts .post .post-descripcion {
-    height: 120px;
+    height: 20px;
   }
   .footer .contenedor-footer {
     display: flex;
