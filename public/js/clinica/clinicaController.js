@@ -13,6 +13,37 @@ $(() => {
       
     })
 
+    $('#btnCreateClinica').click(() => {
+        const clinica = new Clinica()
+
+        const name = $('#nameAltaClinica').val()
+        const razon = $('#razonAltaClinica').val()
+        const cif = $('#cifAltaClinica').val()
+        const phone = $('#phoneAltaClinica').val()
+        const mail = $('#mailAltaClinica').val()
+        const address = $('#addressAltaClinica').val()
+        const manager = $('#managerAltaClinica').val()
+        const status = $('#statusAltaClinica').val()
+        $('.determinate').attr('style', `width: 0%`)
+        
+        clinica.createClinica(
+            name,
+            razon,
+            cif,
+            phone,
+            mail, 
+            address, 
+            manager, 
+            status)
+            .then(resp => {
+              Materialize.toast(`Clinica añadida correctamente`, 4000)
+              $('.modal').modal('close')
+            })
+            .catch(err => {
+              Materialize.toast(`Error => ${err}`, 4000)
+            })
+      })
+
     $('#btnEditarClinica').click(() => {
 
       const user = firebase.auth().currentUser
@@ -59,36 +90,7 @@ $(() => {
 
     */
 
-    $('#btnCreateClinica').click(() => {
-        const clinica = new Clinica()
-
-        const name = $('#nameAltaClinica').val()
-        const razon = $('#razonAltaClinica').val()
-        const cif = $('#cifAltaClinica').val()
-        const phone = $('#phoneAltaClinica').val()
-        const mail = $('#mailAltaClinica').val()
-        const address = $('#addressAltaClinica').val()
-        const manager = $('#managerAltaClinica').val()
-        const status = $('#statusAltaClinica').val()
-        $('.determinate').attr('style', `width: 0%`)
-        
-        clinica.createClinica(
-            name,
-            razon,
-            cif,
-            phone,
-            mail, 
-            address, 
-            manager, 
-            status)
-            .then(resp => {
-              Materialize.toast(`Clinica añadida correctamente`, 4000)
-              $('.modal').modal('close')
-            })
-            .catch(err => {
-              Materialize.toast(`Error => ${err}`, 4000)
-            })
-      })
+    
 
       $('#btnTodasClinicas').click(() => {
 

@@ -4,7 +4,7 @@ class Clinica {
     }
   
     createClinica (name, razon_social, CIF, phone, mail, address, manager, status) {
-        return this.db.collection("clinicas").doc().set({
+        return this.db.collection("clinicas").doc(CIF).set({
             name: name,
             razon_social: razon_social,
             cif: CIF,
@@ -12,6 +12,9 @@ class Clinica {
             mail: mail,
             address: address,
             manager: manager,
+            pacientes: [""],
+            tikets: [""],
+            offers: [""],
             fecha_alta: firebase.firestore.FieldValue.serverTimestamp(),
             status: status
         }).then(refDoc => {
@@ -198,6 +201,18 @@ class Clinica {
            })
         }
     })
+    }
+
+    addPacienteToClinica(idClinica, id){
+        return this.db.collection("clinicas")
+        .doc(idClinica)
+        .update({
+            pacientes : firebase.firestore.FieldValue.arrayUnion(id)
+        }).then(refDoc => {
+            console.log(`Paciente añadido a clinica => ${refDoc.id}`)
+        }).catch(error => {
+          console.log(`Error de alta => ${error}`)
+        })
     }
 
 

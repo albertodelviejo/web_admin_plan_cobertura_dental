@@ -43,16 +43,20 @@
                         </ul>
                     </li>
                     <li><a id="btnEditarClinica">Editar Clínica</a></li>
-                    <li><a href="">Consultar pacientes</a></li>
-                    <li><a href="">Tickets</a></li>
-                    <li><a href="">Saldos de pacientes</a></li>
-                    <li><a href="">Facturas</a></li>
                 </ul>
             </li>
             <li><a id="btnPacientes">PACIENTES</a>
                 <ul>
-                    <li><a href="">Dar de alta</a></li>
-                    <li><a href="">Consultar pacientes</a></li>
+                    <li><a id="btnAltaPaciente">Dar de alta</a></li>
+                    <li><a>Consultar pacientes</a>
+                        <ul>
+                            <li><a id="btnTodosPacientes">Ver todas</a></li>
+                            <li><a id="btnIdPacientes">Por Identificación</a></li>
+                            <li><a id="btnActivosPacientes">Activos</a></li>
+                            <li><a id="btnInactivosPacientes">Inactivos</a></li>
+                            <li><a id="btnEsperaPacientes">En Espera</a></li>
+                        </ul>
+                    </li>
                     <li><a href="">Tickets del paciente</a></li>
                     <li><a href="">Puntos del pacientes</a></li>
                     <li><a href="">Saldo del paciente</a></li>
@@ -84,7 +88,7 @@
             -->
         </ul>
     </nav>
-    <h4 id="tituloPost" class="titulo-posts">Todas las Clínicas</h4>
+    <h4 id="tituloPost" class="titulo-posts">Resultados</h4>
     <section class="posts" id="clinicas">        
     </section>
     <footer class="footer" id="footer">
@@ -272,6 +276,94 @@
                         <div class="div-btnInicioSesion">
                             <a id="btnSearchCifClinica" class="btn waves-effect waves-light">Buscar<i class="material-icons left">create</i></a>
                         </div>                      
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal AltaPaciente -->
+    <div id="modalAltaPaciente" class="modal modal-registro">
+        <div class="modal-content">
+            <div class="container">
+                <h4>Información Paciente</h4>
+                <div class="row">
+                    <div class="col s12 m6 registro-bienvenida">
+                        <div class="input-field">
+                            <input id="nameAltaPaciente" type="text" maxlength="30" data-length="30" required />
+                            <label for="nameAltaPaciente">Nombre Paciente:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="surname1AltaPaciente" type="text"  maxlength="30" data-length="30" required />
+                            <label for="surname1AltaPaciente">Primer apellido:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="surname2AltaPaciente" type="text" required />
+                            <label for="surname2AltaPaciente">Segundo apellido:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="mailAltaPaciente" type="text" required />
+                            <label for="mailAltaPaciente">Email:</label>
+                        </div>
+                        
+                        <div class="input-field">
+                            <input id="genderAltaPaciente" type="text" required />
+                            <label for="genderAltaPaciente">Género:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="birthdayAltaPaciente" type="text" required />
+                            <label for="birthdayAltaPaciente">Fecha de nacimiento:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="addressAltaPaciente" type="text" required />
+                            <label for="addressAltaPaciente">Dirección:</label>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 registro-formulario">
+                        <div class="input-field">
+                            <input id="phoneAltaPaciente" type="text" required />
+                            <label for="phoneAltaPaciente">Teléfono:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="idtypeAltaPaciente" type="text" required />
+                            <label for="idtypeAltaPaciente">Tipo de id:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="idAltaPaciente" type="text" required />
+                            <label for="idAltaPaciente">Id:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="idclinicaAltaPaciente" type="text" required />
+                            <label for="idclinicaAltaPaciente">CIF de clínica asociada:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="iscreditAltaPaciente" type="text" required />
+                            <label for="iscreditAltaPaciente">Credit Plan Dental:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="maritalAltaPaciente" type="text" required />
+                            <label for="maritalAltaPaciente">Estado Civil:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="mobileAltaPaciente" type="text" required />
+                            <label for="mobileAltaPaciente">Móvil:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="statusAltaPaciente" type="text" required />
+                            <label for="statusAltaPaciente">Estatus:</label>
+                        </div>
+                        <!--
+                        <div class="progress-panel">
+                            <label for="btnUploadFile">Imagen:</label>
+                            <input type="file" value="upload" id="btnUploadFile" />
+                            <div class="progress">
+                                <div class="determinate" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        -->
+                        <div class="div-btnInicioSesion">
+                            <a id="btnCreatePaciente" class="btn waves-effect waves-light">Guardar Paciente<i class="material-icons left">create</i></a>
+                        </div>                      
+                    </div>
+                
             </div>
         </div>
     </div>
