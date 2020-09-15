@@ -37,9 +37,12 @@
                         <ul>
                             <li><a id="btnTodasClinicas">Ver todas</a></li>
                             <li><a id="btnNameClinicas">Por nombre</a></li>
-                            <li><a>Por categoría</a></li>
+                            <li><a id="btnActivasClinicas">Activas</a></li>
+                            <li><a id="btnInactivasClinicas">Inactivas</a></li>
+                            <li><a id="btnEsperaClinicas">En Espera</a></li>
                         </ul>
                     </li>
+                    <li><a id="btnEditarClinica">Editar Clínica</a></li>
                     <li><a href="">Consultar pacientes</a></li>
                     <li><a href="">Tickets</a></li>
                     <li><a href="">Saldos de pacientes</a></li>
@@ -186,11 +189,11 @@
                 <div class="row">
                     <div class="col s12 m6 registro-bienvenida">
                         <var ></var>
-                        <h4>Alta de Clínica</h4>
+                        <h4>Información Clínica</h4>
                         <div class="registro-bienvenida-texto">
-                            Comparte un video interesante para la comunidad
+                            Introduzca la información de la clínica
                         </div>
-                        <span>Comparte ahora</span>
+                        <span>Gracias</span>
                     </div>
                     <div class="col s12 m6 registro-formulario">
                         <div class="input-field">
@@ -222,8 +225,8 @@
                             <label for="managerAltaClinica">Nombre del Gerente:</label>
                         </div>
                         <div class="input-field">
-                            <input id="idAltaClinica" type="text" required />
-                            <label for="idAltaClinica">Id:</label>
+                            <input id="statusAltaClinica" type="text" required />
+                            <label for="statusAltaClinica">Id:</label>
                         </div>
                         <!--
                         <div class="progress-panel">
@@ -235,7 +238,7 @@
                         </div>
                         -->
                         <div class="div-btnInicioSesion">
-                            <a id="btnCreateClinica" class="btn waves-effect waves-light">Dar de alta<i class="material-icons left">create</i></a>
+                            <a id="btnCreateClinica" class="btn waves-effect waves-light">Guardar Clínica<i class="material-icons left">create</i></a>
                         </div>                      
                     </div>
                 </div>
@@ -243,7 +246,7 @@
         </div>
     </div>
 
-    <!-- Modal AltaClinica -->
+    <!-- Modal NombreClinica -->
     <div id="modalNombreClinica" class="modal modal-registro">
         <div class="modal-content">
             <div class="container">
@@ -253,6 +256,21 @@
                         </div>
                         <div class="div-btnInicioSesion">
                             <a id="btnSearchClinica" class="btn waves-effect waves-light">Buscar<i class="material-icons left">create</i></a>
+                        </div>                      
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal CifClinica -->
+    <div id="modalCifClinica" class="modal modal-registro">
+        <div class="modal-content">
+            <div class="container">
+                        <div class="input-field">
+                            <input id="nameSearchClinicaCif" type="text" maxlength="30" data-length="30" required />
+                            <label for="nameSearchClinicaCif">Introduzca el CIF:</label>
+                        </div>
+                        <div class="div-btnInicioSesion">
+                            <a id="btnSearchCifClinica" class="btn waves-effect waves-light">Buscar<i class="material-icons left">create</i></a>
                         </div>                      
             </div>
         </div>
@@ -290,8 +308,12 @@
 <script type="text/javascript" src="js/auth/autenticacion.js"></script>
 <script type="text/javascript" src="js/auth/authController.js"></script>
 <script type="text/javascript" src="js/post/postController.js"></script>
-<script type="text/javascript" src="js/clinicas/clinica.js"></script>
-<script type="text/javascript" src="js/clinicas/clinicaController.js"></script>
+<script type="text/javascript" src="js/clinica/clinica.js"></script>
+<script type="text/javascript" src="js/clinica/clinicaController.js"></script>
+<script type="text/javascript" src="js/paciente/paciente.js"></script>
+<script type="text/javascript" src="js/paciente/pacienteController.js"></script>
+<script type="text/javascript" src="js/consultor/consultor.js"></script>
+<script type="text/javascript" src="js/consultor/consultorController.js"></script>
 
 
 <!-- endbuild -->
