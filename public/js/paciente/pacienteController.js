@@ -27,6 +27,7 @@ $(() => {
         const id_type = $('#idtypeAltaPaciente').val()
         const id = $('#idAltaPaciente').val()
         const idClinica = $('#idclinicaAltaPaciente').val()
+        const idConsultor = $('#idconsultorAltaPaciente').val()
         const is_credit_plan = $('#iscreditAltaPaciente').val()
         const marital_status = $('#maritalAltaPaciente').val()
         const mobile_number = $('#mobileAltaPaciente').val() 
@@ -45,6 +46,7 @@ $(() => {
         id_type, 
         id, 
         idClinica,
+        idConsultor,
         is_credit_plan,
         marital_status,
         mobile_number,
@@ -79,43 +81,36 @@ $(() => {
       return 
     }
 
-    $('#modalCifClinica').modal('open')
+    $('#modalNombreClinica').modal('open')
   })
 
-  $('#btnSearchCifClinica').click(() => {
+  $('#btnSearchClinica').click(() => {
 
-    const id = $('#nameSearchClinicaCif').val()
+    const id = $('#nameSearchClinica').val()
 
     const paciente = new Paciente()
     paciente.showPacientesById(id)
-    $('.modal').modal('close')
   })
 
-    /** 
-    $('#btnEditclinica').click(() => {
-      const cif = $('#editclinica').form()
-      db.collection('clinicas')
-      .where('cif', '==', cif)
-      .onSnapshot(querySnapshot => {
-      $('#clinicas').empty()
-      if(querySnapshot.empty){
-    $('#clinicas').append(`<h1>No hay resultado</h1>`)
-    }else{
-                    querySnapshot.forEach(post => {
-                        $('#nameAltaClinica').val(post.data().name)
-                        $('#cifAltaClinica').val(post.data().cif,)
-         $('#phoneAltaClinica').val( post.data().phone,)
-         $('#mailAltaClinica').val(post.data().mail,)
-         $('#addressAltaClinica').val(post.data().address,)
-         $('#managerAltaClinica').val(post.data().manager,)
-         $('.determinate').attr('style', `width: 0%`)
-         $('#modalAltaClinica').modal('open')
-    })
-  }
-})
-    })
+  $('#btnEditarPaciente').click(() => {
 
-    */
+    const user = firebase.auth().currentUser
+
+  if(user == null){
+    Materialize.toast(`Para editar debes estar autenticado`, 4000)
+    return 
+  }
+
+  $('#modalCifClinica').modal('open')
+})
+
+$('#btnSearchCifClinica').click(() => {
+  const paciente = new Paciente();
+  const id = $('#nameSearchClinicaCif').val()
+
+  paciente.getPacienteById(id)
+
+})    
 
     
 
@@ -124,22 +119,7 @@ $(() => {
         const paciente = new Paciente()
         paciente.showPacienteAll()
 
-      })
-
-      $('#btnNameClinicas').click(() => {
-
-        const user = firebase.auth().currentUser
-  
-      if(user == null){
-        Materialize.toast(`Para dar de alta debes estar autenticado`, 4000)
-        return 
-      }
-
-      $('#modalNombreClinica').modal('open')
-
-      })
-
-      
+      })  
 
       
       $('#btnActivosPacientes').click(() => {

@@ -57,6 +57,7 @@
                             <li><a id="btnEsperaPacientes">En Espera</a></li>
                         </ul>
                     </li>
+                    <li><a id="btnEditarPaciente">Editar Paciente</a></li>
                     <li><a href="">Tickets del paciente</a></li>
                     <li><a href="">Puntos del pacientes</a></li>
                     <li><a href="">Saldo del paciente</a></li>
@@ -64,8 +65,17 @@
             </li>
             <li><a id="btnConsultores">CONSULTORES</a>
                 <ul>
-                    <li><a href="">Dar de alta</a></li>
-                    <li><a href="">Consultar consultores</a></li>
+                    <li><a id="btnAltaConsultor">Dar de alta</a></li>
+                    <li><a>Consultar consultores</a>
+                        <ul>
+                            <li><a id="btnTodosConsultores">Ver todas</a></li>
+                            <li><a id="btnIdConsultores">Por Identificación</a></li>
+                            <li><a id="btnActivosConsultores">Activos</a></li>
+                            <li><a id="btnInactivosConsultores">Inactivos</a></li>
+                            <li><a id="btnEsperaConsultores">En Espera</a></li>
+                        </ul>
+                    </li>
+                    <li><a id="btnEditarConsultor">Editar Consultor</a></li>
                     <li><a href="">Pacientes del consultor</a></li>
                     <li><a href="">Tickets de venta</a></li>
                     <li><a href="">Saldo del paciente</a></li>
@@ -80,6 +90,7 @@
                     <li><a href="">Permisos</a></li>
                 </ul>
             </li>
+            <li><a id="btnTickets">TICKETS</a></li>
             <!--
             <li><a id="btnTodoPost">Todos los Posts</a></li>
             <li><a id="btnMisPost">Mis Posts</a></li>
@@ -232,15 +243,6 @@
                             <input id="statusAltaClinica" type="text" required />
                             <label for="statusAltaClinica">Id:</label>
                         </div>
-                        <!--
-                        <div class="progress-panel">
-                            <label for="btnUploadFile">Imagen:</label>
-                            <input type="file" value="upload" id="btnUploadFile" />
-                            <div class="progress">
-                                <div class="determinate" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        -->
                         <div class="div-btnInicioSesion">
                             <a id="btnCreateClinica" class="btn waves-effect waves-light">Guardar Clínica<i class="material-icons left">create</i></a>
                         </div>                      
@@ -303,7 +305,6 @@
                             <input id="mailAltaPaciente" type="text" required />
                             <label for="mailAltaPaciente">Email:</label>
                         </div>
-                        
                         <div class="input-field">
                             <input id="genderAltaPaciente" type="text" required />
                             <label for="genderAltaPaciente">Género:</label>
@@ -316,11 +317,12 @@
                             <input id="addressAltaPaciente" type="text" required />
                             <label for="addressAltaPaciente">Dirección:</label>
                         </div>
-                    </div>
-                    <div class="col s12 m6 registro-formulario">
                         <div class="input-field">
                             <input id="phoneAltaPaciente" type="text" required />
                             <label for="phoneAltaPaciente">Teléfono:</label>
+                    </div>
+                    <div class="col s12 m6 registro-formulario">
+                        
                         </div>
                         <div class="input-field">
                             <input id="idtypeAltaPaciente" type="text" required />
@@ -333,6 +335,10 @@
                         <div class="input-field">
                             <input id="idclinicaAltaPaciente" type="text" required />
                             <label for="idclinicaAltaPaciente">CIF de clínica asociada:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="idconsultorAltaPaciente" type="text" required />
+                            <label for="idconsultorAltaPaciente">Id del consultor asociado:</label>
                         </div>
                         <div class="input-field">
                             <input id="iscreditAltaPaciente" type="text" required />
@@ -363,7 +369,70 @@
                             <a id="btnCreatePaciente" class="btn waves-effect waves-light">Guardar Paciente<i class="material-icons left">create</i></a>
                         </div>                      
                     </div>
-                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal AltaConsultor -->
+    <div id="modalAltaConsultor" class="modal modal-registro">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m6 registro-bienvenida">
+                        <var ></var>
+                        <h4>Información Consultor</h4>
+                        <div class="registro-bienvenida-texto">
+                            Introduzca la información del consultor
+                        </div>
+                        <span>Gracias</span>
+                    </div>
+                    <div class="col s12 m6 registro-formulario">
+                        <div class="input-field">
+                            <input id="nameAltaConsultor" type="text" maxlength="30" data-length="30" required />
+                            <label for="nameAltaConsultor">Nombre:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="surname1AltaConsultor" type="text"  maxlength="30" data-length="30" required />
+                            <label for="surname1AltaConsultor">Primer apellido:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="surname2AltaConsultor" type="text" required />
+                            <label for="surname2AltaConsultor">Segundo apellido:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="mailAltaConsultor" type="text" required />
+                            <label for="mailAltaConsultor">Email:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="dniAltaConsultor" type="text" required />
+                            <label for="dniAltaConsultor">DNI:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="birthdayAltaConsultor" type="text" required />
+                            <label for="birthdayAltaConsultor">Fecha de nacimiento:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="phoneAltaConsultor" type="text" required />
+                            <label for="phoneAltaConsultor">Teléfono:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="addressAltaConsultor" type="text" required />
+                            <label for="addressAltaConsultor">Dirección:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="idConsultorAltaConsultor" type="text" required />
+                            <label for="idConsultorAltaConsultor">Id consultor:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="statusAltaConsultor" type="text" required />
+                            <label for="statusAltaConsultor">Estatus:</label>
+                        </div>
+                        <div class="div-btnInicioSesion">
+                            <a id="btnCreateConsultor" class="btn waves-effect waves-light">Guardar Consultor<i class="material-icons left">create</i></a>
+                        </div>                      
+                    </div>
+                </div>
             </div>
         </div>
     </div>

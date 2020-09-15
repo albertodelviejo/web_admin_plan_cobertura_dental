@@ -104,7 +104,7 @@ class Clinica {
             $('#idAltaClinica').val()
             $('.determinate').attr('style', `width: 0%`)
               
-            $('#modalAltaClinica').modal('open')
+            $('#modalAltaPaciente').modal('open')
            })
         }
     })

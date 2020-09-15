@@ -15,6 +15,7 @@ class Paciente {
         id_type, 
         id, 
         idClinica,
+        idConsultor,
         is_credit_plan,
         marital_status,
         mobile_number,
@@ -37,6 +38,7 @@ class Paciente {
                 id_type: id_type,
                 id: id,
                 idClinica: idClinica,
+                idConsultor: idConsultor,
                 is_credit_plan: is_credit_plan,
                 marital_status: marital_status,
                 mobile_number: mobile_number,
@@ -268,6 +270,39 @@ class Paciente {
                    post.data().payed_balance + "€",
                )
                $('#clinicas').append(postHtml) 
+           })
+        }
+    })
+    }
+
+    getPacienteById(id){
+        this.db.collection('pacientes')
+        .where('id', '==', id)
+    .onSnapshot(querySnapshot => {
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h2>No se ha encontrado ningun paciente<h3>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+        $('#nameAltaPaciente').val(post.data().name)
+        $('#surname1AltaPaciente').val(post.data().surname1) 
+        $('#surname2AltaPaciente').val(post.data().surname2)
+        $('#mailAltaPaciente').val(post.data().email)
+        $('#genderAltaPaciente').val(post.data().gender)
+        $('#birthdayAltaPaciente').val(post.data().birthday)
+        $('#addressAltaPaciente').val(post.data().address)
+        $('#phoneAltaPaciente').val(post.data().phone_number)
+        $('#idtypeAltaPaciente').val(post.data().id_type)
+        $('#idAltaPaciente').val(post.data().id)
+        $('#idclinicaAltaPaciente').val(post.data().idClinica)
+        $('#idconsultorAltaPaciente').val(post.data().idConsultor)
+        $('#iscreditAltaPaciente').val(post.data().is_credit_plan)
+        $('#maritalAltaPaciente').val(post.data().marital_status)
+        $('#mobileAltaPaciente').val(post.data().mobile_number) 
+        $('#statusAltaPaciente').val(post.data().status)
+        $('.determinate').attr('style', `width: 0%`)
+              
+            $('#modalAltaPaciente').modal('open')
            })
         }
     })

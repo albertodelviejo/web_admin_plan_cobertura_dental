@@ -62,35 +62,7 @@ $(() => {
 
     clinica.getClinicaByCIF(cif)
 
-  })
-
-    /** 
-    $('#btnEditclinica').click(() => {
-      const cif = $('#editclinica').form()
-      db.collection('clinicas')
-      .where('cif', '==', cif)
-      .onSnapshot(querySnapshot => {
-      $('#clinicas').empty()
-      if(querySnapshot.empty){
-    $('#clinicas').append(`<h1>No hay resultado</h1>`)
-    }else{
-                    querySnapshot.forEach(post => {
-                        $('#nameAltaClinica').val(post.data().name)
-                        $('#cifAltaClinica').val(post.data().cif,)
-         $('#phoneAltaClinica').val( post.data().phone,)
-         $('#mailAltaClinica').val(post.data().mail,)
-         $('#addressAltaClinica').val(post.data().address,)
-         $('#managerAltaClinica').val(post.data().manager,)
-         $('.determinate').attr('style', `width: 0%`)
-         $('#modalAltaClinica').modal('open')
-    })
-  }
-})
-    })
-
-    */
-
-    
+  })    
 
       $('#btnTodasClinicas').click(() => {
 

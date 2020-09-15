@@ -3,15 +3,19 @@ class Consultor {
         this.db = firebase.firestore()
     }
 
-    createConsultor (name, surname1, surname2, dni, phone, mail, address) {
-        return this.db.collection("consultores").add({
+    createConsultor (name, surname1, surname2, idConsultor, dni, phone, email, birthday, address) {
+        return this.db.collection("consultores").doc(idConsultor).set({
             name: name,
             surname1: surname1,
             surname2: surname2,
             id: dni,
-            phone: phone,
-            mail: mail,
+            idConsultor: idConsultor,
+            phone_number: phone,
+            email: email,
             address: address,
+            birthday: birthday,
+            tickets: [""],
+            pacientes: [""],
             status: "active",
             fecha_alta: firebase.firestore.FieldValue.serverTimestamp(),
         }).then(refDoc => {
@@ -41,7 +45,9 @@ class Consultor {
                 "Dirección",
                 post.data().address,
                 "Estatus",
-                post.data().status
+                post.data().status,
+                "Id Consultor",
+                post.data().idConsultor
                )
                $('#clinicas').append(postHtml) 
            })
@@ -51,7 +57,7 @@ class Consultor {
 
     showConsultorById(idConsultor){
         this.db.collection('consultores')
-        .where('id', '==', idConsultor)
+        .where('idConsultor', '==', idConsultor)
         .onSnapshot(querySnapshot => {
             $('#clinicas').empty()
             if(querySnapshot.empty){
@@ -70,7 +76,9 @@ class Consultor {
                     "Dirección",
                     post.data().address,
                     "Estatus",
-                    post.data().status
+                    post.data().status,
+                    "Id consultor",
+                    post.data().idConsultor
                    )
                    $('#clinicas').append(postHtml) 
                })
@@ -78,33 +86,124 @@ class Consultor {
         })
     }
 
-    showConsultorByIdClinica(idClinica){
+    showActiveConsultor(){
         this.db.collection('consultores')
-        .where('idClinica','==', idClinica)
+        .where('status', '==', "active")
         .onSnapshot(querySnapshot => {
-            $('#clinicas').empty()
-            if(querySnapshot.empty){
-                $('#clinicas').append()//this.obtenerTemplatePostVacio())
-            }else{
-               querySnapshot.forEach(post => {
-                const title = post.data().name + post.data().surname1 + post.data().surname2
-                let postHtml = this.obtenerPostTemplate(
-                    title,
-                    "DNI",
-                    post.data().id,
-                    "Teléfono",
-                    post.data().phone,
-                    "Email",
-                    post.data().mail,
-                    "Dirección",
-                    post.data().address,
-                    "Estatus",
-                    post.data().status
-                   )
-                   $('#clinicas').append(postHtml) 
-               })
-            }
-        })
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            const title = post.data().name + post.data().surname1 + post.data().surname2
+            let postHtml = this.obtenerPostTemplate(
+                title,
+                "DNI",
+                post.data().id,
+                "Teléfono",
+                post.data().phone,
+                "Email",
+                post.data().mail,
+                "Dirección",
+                post.data().address,
+                "Estatus",
+                post.data().status,
+                "Id consultor",
+                post.data().idConsultor
+               )
+               $('#clinicas').append(postHtml) 
+           })
+        }
+    })
+    }
+
+    showInactiveConsultor(){
+        this.db.collection('consultores')
+        .where('status', '==', "inactive")
+        .onSnapshot(querySnapshot => {
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            const title = post.data().name + post.data().surname1 + post.data().surname2
+            let postHtml = this.obtenerPostTemplate(
+                title,
+                "DNI",
+                post.data().id,
+                "Teléfono",
+                post.data().phone,
+                "Email",
+                post.data().mail,
+                "Dirección",
+                post.data().address,
+                "Estatus",
+                post.data().status,
+                "Id consultor",
+                post.data().idConsultor
+               )
+               $('#clinicas').append(postHtml) 
+           })
+        }
+    })
+    }
+
+    showStandbyConsultor(){
+        this.db.collection('consultores')
+        .where('status', '==', "standby")
+        .onSnapshot(querySnapshot => {
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            const title = post.data().name + post.data().surname1 + post.data().surname2
+            let postHtml = this.obtenerPostTemplate(
+                title,
+                "DNI",
+                post.data().id,
+                "Teléfono",
+                post.data().phone,
+                "Email",
+                post.data().mail,
+                "Dirección",
+                post.data().address,
+                "Estatus",
+                post.data().status,
+                "Id consultor",
+                post.data().idConsultor
+               )
+               $('#clinicas').append(postHtml) 
+           })
+        }
+    })
+    }
+
+    getConsultorById(idConsultor){
+        this.db.collection('consultores')
+        .where('idConsultor', '==', idConsultor)
+    .onSnapshot(querySnapshot => {
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h2>No se ha encontrado ningun consultor<h3>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+        $('#nameAltaConsultor').val(post.data().name)
+        $('#surname1AltaConsultor').val(post.data().surname1) 
+        $('#surname2AltaConsultor').val(post.data().surname2)
+        $('#mailAltaConsultor').val(post.data().email)
+        $('#birthdayAltaConsultor').val(post.data().birthday)
+        $('#addressAltaConsultor').val(post.data().address)
+        $('#phoneAltaConsultor').val(post.data().phone_number)
+        $('#dniAltaConsultor').val(post.data().id)
+        $('#idConsultorAltaConsultor').val(post.data().idConsultor)
+        $('#statusAltaConsultor').val(post.data().status)
+        $('.determinate').attr('style', `width: 0%`)
+              
+            $('#modalAltaConsultor').modal('open')
+           })
+        }
+    })
     }
 
 
@@ -121,6 +220,8 @@ class Consultor {
         field4,
         field5title,
         field5,
+        field6title,
+        field6,
       ) {
           return `
           <article class="post">
@@ -146,6 +247,9 @@ class Consultor {
                 <div class="row">
                     <div class="col m6">
                         <p>${field5title}: ${field5}</p>
+                    </div>
+                    <div class="col m6">
+                        <p>${field6title}: ${field6}</p>
                     </div>
                 </div>
             </article>`
