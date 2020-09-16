@@ -6,8 +6,9 @@ $(() => {
         const nombres = $('#nombreContactoReg').val();
         const email = $('#emailContactoReg').val();
         const password = $('#passwordReg').val();
+        const idConsultor = $('#idconsultorReg').val();
         const auth = new Autenticacion()
-        auth.crearCuentaEmailPass(email, password, nombres)
+        auth.crearCuentaEmailPass(email, password, nombres, idConsultor)
     });
 
     $("#btnInicioEmail").click(() => {

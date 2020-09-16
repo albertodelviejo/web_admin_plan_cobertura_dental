@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>VideoBlog Geek</title>
+    <title>Plan Cobertura Dental</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link href="https://fonts.googleapis.com/css?family=Allerta|Montserrat" rel="stylesheet">
+    <script src="/bower_components/webcomponents/webcomponentsjs/webcomponents-lite-min.js">
+    </script>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,6 +30,7 @@
                 <img id="avatar" src="imagenes/usuario.png" alt="Avatar">
             </figure>
     </header>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <nav class="menu">
         <ul>
             <li><a id="btnClinicas">CLÍNICAS</a>
@@ -55,12 +58,10 @@
                             <li><a id="btnActivosPacientes">Activos</a></li>
                             <li><a id="btnInactivosPacientes">Inactivos</a></li>
                             <li><a id="btnEsperaPacientes">En Espera</a></li>
+                            <li><a id="btnCreditPlanPacientes">Credit Plan</a></li>
                         </ul>
                     </li>
                     <li><a id="btnEditarPaciente">Editar Paciente</a></li>
-                    <li><a href="">Tickets del paciente</a></li>
-                    <li><a href="">Puntos del pacientes</a></li>
-                    <li><a href="">Saldo del paciente</a></li>
                 </ul>
             </li>
             <li><a id="btnConsultores">CONSULTORES</a>
@@ -76,21 +77,38 @@
                         </ul>
                     </li>
                     <li><a id="btnEditarConsultor">Editar Consultor</a></li>
-                    <li><a href="">Pacientes del consultor</a></li>
-                    <li><a href="">Tickets de venta</a></li>
-                    <li><a href="">Saldo del paciente</a></li>
-                    <li><a href="">Facturas</a></li>
                 </ul>
             </li>
             <li><a id="btnProveedores">PROVEEDORES</a></li>
             <li><a id="btnUsuarios">USUARIOS</a>
                 <ul>
-                    <li><a href="">Dar de alta</a></li>
-                    <li><a href="">Tipología</a></li>
-                    <li><a href="">Permisos</a></li>
+                    <li><a id="btnAltaUsuario">Dar de alta</a></li>
                 </ul>
             </li>
-            <li><a id="btnTickets">TICKETS</a></li>
+            <li><a id="btnTickets">TICKETS</a>
+                <ul>
+                    <li><a id="btnTodosTickets">Ver todos</a></li>
+                    <li><a id="btnPacienteTickets">Por Paciente</a></li>
+                    <li><a id="btnClinicaTickets">Por Clínica</a></li>
+                    <li><a id="btnConsultorTickets">Por Consultor</a></li>
+                    <li><a id="btnConceptoTickets">Por Concepto</a></li>
+                </ul>
+            </li>
+            <li><a id="btnPuntos">PUNTOS</a>
+                <ul>
+                    <li><a id="btnTodosPuntos">Ver todos</a></li>
+                    <li><a id="btnPacientePuntos">Por Paciente</a></li>
+                    <li><a id="btnClinicaPuntos">Por Clínica</a></li>
+                </ul></li>
+            <li><a id="btnSaldos">SALDOS</a>
+                <ul>
+                    <li><a id="btnTotalSaldo">Ver total</a></li>
+                    <li><a id="btnPacienteSaldo">Por Paciente</a></li>
+                    <li><a id="btnClinicaSaldo">Por Clínica</a></li>
+                    <li><a id="btnConsultorSaldo">Por Consultor</a></li>
+                </ul>
+            </li>
+            <li><a id="btnTickets">FACTURAS</a></li>
             <!--
             <li><a id="btnTodoPost">Todos los Posts</a></li>
             <li><a id="btnMisPost">Mis Posts</a></li>
@@ -105,17 +123,8 @@
     <footer class="footer" id="footer">
 
         <div class="contenedor-footer">
-
-            <div>
-            </div>
-
-            <div class="redesSociales">
                 <!-- Esto es el footer -->
-                <p class="realizadopor"><strong>Developed by Alberto Del Viejo</strong></p>
-                <p class="realizadoclase"><strong>GDE Firebase</strong></p>
-            </div>
-
-            
+                <p class="realizadopor"><strong>Plan Cobertura Dental</strong></p>
         </div>
     </footer>
 
@@ -125,11 +134,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col s12 m6 registro-bienvenida">
-                        <h4>Bienvenido al VideoBlog Geek</h4>
+                        <h4>Bienvenido a Plan Cobertura Dental</h4>
                         <div class="registro-bienvenida-texto">
-                            Publica, aprende y conecta con otros por medio de videos Geek.
+                            Estamos encantados de tener de vuelta
                         </div>
-                        <span>Empieza Ahora</span>
+                        <span>Inicia Sesión</span>
                     </div>
                     <div class="col s12 m6 registro-formulario">
                         <div class="input-field">                            
@@ -166,11 +175,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col s12 m6 registro-bienvenida">
-                        <h4>Bienvenido al VideoBlog Geek</h4>
+                        <h4>Registro de nuevo usuario</h4>
                         <div class="registro-bienvenida-texto">
-                            Publica, aprende y conecta con otros por medio de videos Geek.
+                            Nuevo usuario con acceso de lectura
                         </div>
-                        <span>Empieza Ahora</span>
+                        <span>Introduzca los datos</span>
                     </div>
                     <div class="col s12 m6 registro-formulario">
                         <div class="input-field">
@@ -184,6 +193,10 @@
                         <div class="input-field">
                             <input id="passwordReg" type="password"  maxlength="10" data-length="10" required />
                             <label for="passwordReg">Password:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="idconsultorReg" type="password"  maxlength="10" data-length="10" required />
+                            <label for="idconsultorReg">Id de consultor: </label>
                         </div>
                         <div class="div-btnInicioSesion">
                             <a id="btnRegistroEmail" class="btn waves-effect waves-light">Registrarse<i class="material-icons left">account_box</i></a>
@@ -258,10 +271,27 @@
             <div class="container">
                         <div class="input-field">
                             <input id="nameSearchClinica" type="text" maxlength="30" data-length="30" required />
-                            <label for="nameSearchClinica">Nombre Clínica:</label>
+                            <label for="nameSearchClinica">Introduzca el nombre:</label>
+                            <input id="typeSearchClinica" type="hidden" maxlength="30" data-length="30"/>
                         </div>
                         <div class="div-btnInicioSesion">
                             <a id="btnSearchClinica" class="btn waves-effect waves-light">Buscar<i class="material-icons left">create</i></a>
+                        </div>                      
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Id -->
+    <div id="modalId" class="modal modal-registro">
+        <div class="modal-content">
+            <div class="container">
+                        <div class="input-field">
+                            <input id="idSearch" type="text" maxlength="30" data-length="30" required />
+                            <label for="idSearch">Introduzca el ID:</label>
+                            <input id="typeSearchid" type="hidden" maxlength="30" data-length="30"/>
+                        </div>
+                        <div class="div-btnInicioSesion">
+                            <a id="btnSearchid" class="btn waves-effect waves-light">Buscar<i class="material-icons left">create</i></a>
                         </div>                      
             </div>
         </div>
@@ -475,7 +505,14 @@
 <script type="text/javascript" src="js/paciente/pacienteController.js"></script>
 <script type="text/javascript" src="js/consultor/consultor.js"></script>
 <script type="text/javascript" src="js/consultor/consultorController.js"></script>
-
+<script type="text/javascript" src="js/usuario/usuario.js"></script>
+<script type="text/javascript" src="js/usuario/usuarioController.js"></script>
+<script type="text/javascript" src="js/tickets/ticket.js"></script>
+<script type="text/javascript" src="js/tickets/ticketController.js"></script>
+<script type="text/javascript" src="js/puntos/puntos.js"></script>
+<script type="text/javascript" src="js/puntos/puntosController.js"></script>
+<script type="text/javascript" src="js/saldo/saldo.js"></script>
+<script type="text/javascript" src="js/saldo/saldoController.js"></script>
 
 <!-- endbuild -->
 

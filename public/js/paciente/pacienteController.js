@@ -81,6 +81,7 @@ $(() => {
       return 
     }
 
+
     $('#modalNombreClinica').modal('open')
   })
 
@@ -140,6 +141,13 @@ $('#btnSearchCifClinica').click(() => {
 
         const paciente = new Paciente()
         paciente.showStandbyPaciente()
+
+      })
+
+      $('#btnCreditPlanPacientes').click(() => {
+
+        const paciente = new Paciente()
+        paciente.showIsCreditPaciente()
 
       })
       

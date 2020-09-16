@@ -108,11 +108,12 @@ body {
 }
 .menu {
   background: #219cca;
-  border-left: 10px solid #fff;
+  border-left: 0px solid #fff;
   box-shadow: 0 8px 10px rgba(0,0,0,0.5);
+  height: 40px;
 }
 .menu ul {
-  margin: 0px;
+  margin-left: 20px;
 }
 .menu ul li {
   display: none;
@@ -133,6 +134,15 @@ body {
   font-size: 17px;
 }
 
+.menu ul li ul li ul li{
+  color: #fff;
+  text-decoration: none;
+  padding: 0 1em;
+  transition: 0.6s;
+  background: #219cca;
+  width: 220px;
+}
+
 .menu li ul{
   display: none;
   position: absolute;
@@ -147,14 +157,19 @@ body {
   display: none;
   position: absolute;
   background: #219cca;
+  width: 120px;
 }
 
 .menu li ul li:hover > ul {
   display: block;
+  width: 120px;
 }
 
 .footer {
-  height: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background: #126798;
   margin: 0px;
 }
@@ -207,6 +222,12 @@ body {
 }
 .footer .contenedor-footer .redesSociales .realizadopor {
   padding-top: 30px;
+  color: #fff;
+}
+
+.footer .realizadopor {
+  padding-top: 0px;
+  color: #fff;
 }
 .footer .contenedor-footer .redesSociales .realizadoclase {
   padding-bottom: 30px;
@@ -243,6 +264,7 @@ body {
 .posts {
   padding: 0.8em;
   margin: 0px;
+  margin-bottom: 50px;
   text-align: center;
 }
 .posts .post {
@@ -282,6 +304,7 @@ body {
 }
 .posts .post .post-titulo h5 {
   font-weight: bold;
+  margin-left: 20px;
 }
 .posts .post .post-video {
   text-align: center;
@@ -323,6 +346,12 @@ body {
   padding-left: 0.5em;
   text-align: left;
   width: 100%;
+}
+
+.posts .post .row{
+  font-size: 20px;
+  text-align: left;
+  margin-left: 20px;
 }
 .modal-registro {
   width: 80% !important;

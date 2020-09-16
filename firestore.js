@@ -114,7 +114,7 @@ class PostDAO {
     allPosts () {
       this.db
         .collection('posts')
-        .orderBy('titulo', 'asc')
+        .orderBy('titulo', 'desc')
         .limit(3)
         .get()
         .then(querySnapshot => {
