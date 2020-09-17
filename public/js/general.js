@@ -7,10 +7,6 @@ $(() => {
     firebase.initializeApp(firebaseConfig);
   }
 
-  //Listening real time
-  const post = new Post()
-  post.consultarTodosPost()
-
   // Firebase observador del cambio de estado
   firebase.auth().onAuthStateChanged(user => {
     if(user){
@@ -54,22 +50,5 @@ $(() => {
     .catch(error => {
       Materialize.toast(`Error al realizar Sign Out ${error}`, 4000)
     })
-  })
-
-  $('#btnTodoPost').click(() => {
-    $('#tituloPost').text('Posts de la Comunidad')   
-    const post = new Post()
-    post.consultarTodosPost()
-  })
-
-  $('#btnMisPost').click(() => {
-    const user = firebase.auth().currentUser
-    if(user){
-      const post = new Post()
-      post.consultarPostxUsuario(user.email)
-      $('#tituloPost').text('Mis Posts')
-    }else{
-      Materialize.toast(`Debes estar autenticado para ver tus posts`, 4000) 
-    } 
   })
 })

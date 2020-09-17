@@ -59,7 +59,7 @@ class Paciente {
     .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()//this.obtenerTemplatePostVacio())
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
             const title = post.data().name + " " + post.data().surname1 + " " + post.data().surname2
@@ -83,6 +83,8 @@ class Paciente {
                        creditPlan,
                        "Saldo Pagado",
                        post.data().payed_balance + "€",
+                       "ID",
+                       post.data().id
                    )
                    $('#clinicas').append(postHtml) 
            })
@@ -96,7 +98,7 @@ class Paciente {
         .onSnapshot(querySnapshot => {
             $('#clinicas').empty()
             if(querySnapshot.empty){
-                $('#clinicas').append()//this.obtenerTemplatePostVacio())
+                $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
             }else{
                querySnapshot.forEach(post => {
                 const title = post.data().name + post.data().surname1 + post.data().surname2
@@ -133,7 +135,7 @@ class Paciente {
         .onSnapshot(querySnapshot => {
             $('#clinicas').empty()
             if(querySnapshot.empty){
-                $('#clinicas').append()//this.obtenerTemplatePostVacio())
+                $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
             }else{
                querySnapshot.forEach(post => {
                 const title = post.data().name + post.data().surname1 + post.data().surname2
@@ -347,6 +349,26 @@ class Paciente {
     })
     }
 
+    getPacienteforModal(id){
+        this.db.collection('pacientes')
+        .where('id', '==', id)
+    .onSnapshot(querySnapshot => {
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h2>Error<h3>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            $('#modaltitlepaciente').text(post.data().name)
+            $('#idPaciente').val(id)
+            
+            $('.determinate').attr('style', `width: 0%`)
+              
+            $('#modalItemPaciente').modal('open')
+           })
+        }
+    })
+    }
+
     obtenerPostTemplate (
         title,
         field1title,
@@ -361,9 +383,11 @@ class Paciente {
         field5,
         field6title,
         field6,
+        field7title,
+        field7,
       ) {
         return `
-        <article class="post">
+        <article onclick=test("${field7}") class="post">
               <div class="post-titulo">
                   <h5>${title}</h5>
               </div>
@@ -391,6 +415,12 @@ class Paciente {
                   ${field6title}: ${field6}
                   </div>        
               </div>
+              <script>
+                function test(id){
+                 const paciente = new Paciente();
+                 paciente.getPacienteforModal(id);
+                }
+                </script>
           </article>`
       }
 

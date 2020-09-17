@@ -80,6 +80,7 @@ $(() => {
         return 
       }
 
+      $('#typeSearchClinica').val("NameClinica")
       $('#modalNombreClinica').modal('open')
 
       })
@@ -87,10 +88,13 @@ $(() => {
       $('#btnSearchClinica').click(() => {
 
         const name = $('#nameSearchClinica').val()
+        const type = $('#typeSearchClinica').val()
 
-        const clinica = new Clinica()
-        clinica.showClinicaByName(name)
-        $('.modal').modal('close')
+        if(type == "NameClinica"){
+          const clinica = new Clinica()
+          clinica.showClinicaByName(name)
+          $('.modal').modal('close')
+        }       
       })
 
       
@@ -114,6 +118,64 @@ $(() => {
         clinica.showStandbyClinica()
 
       })
+
+      $('#btnTodosPacientesClinica').click(() => {
+
+        const clinica = new Clinica()
+        const cif = $('#cifClinica').val()
+        clinica.showPacientesByIdClinica(cif)
+
+      })
+
+      $('#btnActivosPacientesClinica').click(() => {
+
+        const clinica = new Clinica()
+        const cif = $('#cifClinica').val()
+        clinica.showPacientesActivosByClinica(cif)
+
+      })
+
+      $('#btnInactivosPacientesClinica').click(() => {
+
+        const clinica = new Clinica()
+        const cif = $('#cifClinica').val()
+        clinica.showPacientesInactivosByClinica(cif)
+
+      })
+
+      $('#btnEsperaPacientesClinica').click(() => {
+
+        const clinica = new Clinica()
+        const cif = $('#cifClinica').val()
+        clinica.showPacientesEsperaByClinica(cif)
+
+      })
+
+      $('#btnIdPacientesClinica').click(() => {
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+    
+        $('#typeSearchid').val('findidpacienteclinica')
+        $('#modalId').modal('open')
+      })
+
+      $('#btnSearchid').click(() => {
+
+        const id = $('#idSearch').val()
+        const type = $('#typeSearchid').val()
+        const cif = $('#cifClinica').val()
+      
+        const clinica = new Clinica()
+      
+        if(type == "findidpacienteclinica"){
+          clinica.showPacientesByIdByClinica(cif, id)
+        }
       
   })
+
+})
   

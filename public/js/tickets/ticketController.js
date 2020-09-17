@@ -14,8 +14,8 @@ $(() => {
           Materialize.toast(`Para editar debes estar autenticado`, 4000)
           return 
         }
-        $('#typeSearchClinica').val('idpaciente')
-        $('#modalNombreClinica').modal('open')
+        $('#typeSearchid').val('idpaciente')
+        $('#modalId').modal('open')
       })
 
       
@@ -26,8 +26,8 @@ $(() => {
           Materialize.toast(`Para editar debes estar autenticado`, 4000)
           return 
         }
-        $('#typeSearchClinica').val('idclinica')
-        $('#modalNombreClinica').modal('open')
+        $('#typeSearchid').val('idclinica')
+        $('#modalId').modal('open')
       })
 
       $('#btnConsultorTickets').click(() => {
@@ -37,8 +37,8 @@ $(() => {
           Materialize.toast(`Para editar debes estar autenticado`, 4000)
           return 
         }
-        $('#typeSearchClinica').val('idconsultor')
-        $('#modalNombreClinica').modal('open')
+        $('#typeSearchid').val('idconsultor')
+        $('#modalId').modal('open')
       })
 
       $('#btnConceptoTickets').click(() => {
@@ -48,15 +48,16 @@ $(() => {
           Materialize.toast(`Para editar debes estar autenticado`, 4000)
           return 
         }
-        $('#typeSearchClinica').val('topic')
-        $('#modalNombreClinica').modal('open')
+        $('#typeSearchid').val('topic')
+        $('#modalId').modal('open')
       })
 
-      $('#btnSearchClinica').click(() => {
+      $('#btnSearchid').click(() => {
 
-        const type = $('#typeSearchClinica').val()
-        const result = $('#nameSearchClinica').val()
+        const type = $('#typeSearchid').val()
+        const result = $('#idSearch').val()
         const ticket = new Ticket()
+        const cif = $('#cifClinica').val()
         
         switch(type){
             case "idpaciente":    
@@ -71,7 +72,52 @@ $(() => {
             case "topic":
                 ticket.showTicketByTopic(result)
             break
+            case "topicclinica":   
+              ticket.showTicketByTopicClinica(cif,result)
+            break
+            case "pacienteclinica":
+              ticket.showTicketByPacienteClinica(cif,result)
+            break
         }
+        $('#modalId').modal('close')
       })
+
+      $('#btnTodosTicketsClinica').click(() => {
+
+        const tiket = new Ticket()
+        const cif = $('#cifClinica').val()
+        tiket.showTicketByIdClinica(cif)
+
+      })
+
+      $('#btnConceptoTicketsClinica').click(() => {
+
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+        $('#typeSearchid').val('topicclinica')
+        $('#modalId').modal('open')
+        
+
+      })
+
+      $('#btnPacienteTicketsClinica').click(() => {
+
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+        $('#typeSearchid').val('pacienteclinica')
+        $('#modalId').modal('open')
+        
+
+      })
+
+
 
 })

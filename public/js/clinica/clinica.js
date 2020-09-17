@@ -29,10 +29,11 @@ class Clinica {
     .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()//this.obtenerTemplatePostVacio())
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
             const title = post.data().name + post.data().razon_social
+
                let postHtml = this.obtenerPostTemplate(
                 title,
                 "CIF",
@@ -49,6 +50,7 @@ class Clinica {
                 post.data().status
                )
                $('#clinicas').append(postHtml) 
+
            })
         }
     })
@@ -60,7 +62,7 @@ class Clinica {
     .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()//this.obtenerTemplatePostVacio())
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
                const title = post.data().name + post.data().razon_social
@@ -104,7 +106,27 @@ class Clinica {
             $('#idAltaClinica').val()
             $('.determinate').attr('style', `width: 0%`)
               
-            $('#modalAltaPaciente').modal('open')
+            $('#modalAltaClinica').modal('open')
+           })
+        }
+    })
+    }
+
+    getClinicaforModal(cif){
+        this.db.collection('clinicas')
+        .where('cif', '==', cif)
+    .onSnapshot(querySnapshot => {
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h2>No se ha encontrado ninguna clinica<h3>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            $('#modaltitle').text(post.data().name)
+            $('#cifClinica').val(cif)
+            
+            $('.determinate').attr('style', `width: 0%`)
+              
+            $('#modalItem').modal('open')
            })
         }
     })
@@ -215,6 +237,233 @@ class Clinica {
         })
     }
 
+    showPacientesByIdClinica(idClinica){
+        this.db.collection('pacientes')
+        .where('idClinica','==', idClinica)
+        .onSnapshot(querySnapshot => {
+            $('#modalresults').empty()
+            if(querySnapshot.empty){
+                $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+            }else{
+               querySnapshot.forEach(post => {
+                const title = post.data().name + post.data().surname1 + post.data().surname2
+                var creditPlan = "";
+                if (post.data().is_credit_plan){
+                    creditPlan = "Sí"
+                }else{
+                    creditPlan = "No"
+                }
+                let postHtml = this.obtenerPostTemplate(
+                       title,
+                       "Dirección",
+                       post.data().address,
+                       "Email",
+                       post.data().email,
+                       "Teléfono",
+                       post.data().phone_number,
+                       "ID",
+                       post.data().id,
+                       "Credit Plan",
+                       creditPlan,
+                       "Saldo Pagado",
+                       post.data().payed_balance + "€",
+                   )
+                   $('#modalresults').append(postHtml) 
+               })
+            }
+        })
+    }
+
+        showPacientesByIdByClinica(idClinica, id){
+            this.db.collection('pacientes')
+            .where('idClinica','==', idClinica)
+            .where('id','==', id)
+            .onSnapshot(querySnapshot => {
+                $('#modalresults').empty()
+                if(querySnapshot.empty){
+                    $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+                }else{
+                   querySnapshot.forEach(post => {
+                    const title = post.data().name + post.data().surname1 + post.data().surname2
+                    var creditPlan = "";
+                    if (post.data().is_credit_plan){
+                        creditPlan = "Sí"
+                    }else{
+                        creditPlan = "No"
+                    }
+                    let postHtml = this.obtenerPostTemplate(
+                           title,
+                           "Dirección",
+                           post.data().address,
+                           "Email",
+                           post.data().email,
+                           "Teléfono",
+                           post.data().phone_number,
+                           "ID",
+                           post.data().id,
+                           "Credit Plan",
+                           creditPlan,
+                           "Saldo Pagado",
+                           post.data().payed_balance + "€",
+                       )
+                       $('#modalresults').append(postHtml) 
+                   })
+                }
+            })
+        }
+            showPacientesByIdByClinica(idClinica, id){
+                this.db.collection('pacientes')
+                .where('idClinica','==', idClinica)
+                .where('id','==', id)
+                .onSnapshot(querySnapshot => {
+                    $('#modalresults').empty()
+                    if(querySnapshot.empty){
+                        $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+                    }else{
+                       querySnapshot.forEach(post => {
+                        const title = post.data().name + post.data().surname1 + post.data().surname2
+                        var creditPlan = "";
+                        if (post.data().is_credit_plan){
+                            creditPlan = "Sí"
+                        }else{
+                            creditPlan = "No"
+                        }
+                        let postHtml = this.obtenerPostTemplate(
+                               title,
+                               "Dirección",
+                               post.data().address,
+                               "Email",
+                               post.data().email,
+                               "Teléfono",
+                               post.data().phone_number,
+                               "ID",
+                               post.data().id,
+                               "Credit Plan",
+                               creditPlan,
+                               "Saldo Pagado",
+                               post.data().payed_balance + "€",
+                           )
+                           $('#modalresults').append(postHtml) 
+                       })
+                    }
+                })
+
+            }
+
+                showPacientesActivosByClinica(idClinica){
+                    this.db.collection('pacientes')
+                    .where('idClinica','==', idClinica)
+                    .where('status','==', "active")
+                    .onSnapshot(querySnapshot => {
+                        $('#modalresults').empty()
+                        if(querySnapshot.empty){
+                            $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+                        }else{
+                           querySnapshot.forEach(post => {
+                            const title = post.data().name + post.data().surname1 + post.data().surname2
+                            var creditPlan = "";
+                            if (post.data().is_credit_plan){
+                                creditPlan = "Sí"
+                            }else{
+                                creditPlan = "No"
+                            }
+                            let postHtml = this.obtenerPostTemplate(
+                                   title,
+                                   "Dirección",
+                                   post.data().address,
+                                   "Email",
+                                   post.data().email,
+                                   "Teléfono",
+                                   post.data().phone_number,
+                                   "ID",
+                                   post.data().id,
+                                   "Credit Plan",
+                                   creditPlan,
+                                   "Saldo Pagado",
+                                   post.data().payed_balance + "€",
+                               )
+                               $('#modalresults').append(postHtml) 
+                           })
+                        }
+                    })
+    }
+
+    showPacientesInactivosByClinica(idClinica){
+        this.db.collection('pacientes')
+        .where('idClinica','==', idClinica)
+        .where('status','==', "inactive")
+        .onSnapshot(querySnapshot => {
+            $('#modalresults').empty()
+            if(querySnapshot.empty){
+                $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+            }else{
+               querySnapshot.forEach(post => {
+                const title = post.data().name + post.data().surname1 + post.data().surname2
+                var creditPlan = "";
+                if (post.data().is_credit_plan){
+                    creditPlan = "Sí"
+                }else{
+                    creditPlan = "No"
+                }
+                let postHtml = this.obtenerPostTemplate(
+                       title,
+                       "Dirección",
+                       post.data().address,
+                       "Email",
+                       post.data().email,
+                       "Teléfono",
+                       post.data().phone_number,
+                       "ID",
+                       post.data().id,
+                       "Credit Plan",
+                       creditPlan,
+                       "Saldo Pagado",
+                       post.data().payed_balance + "€",
+                   )
+                   $('#modalresults').append(postHtml) 
+               })
+            }
+        })
+}
+
+showPacientesEsperaByClinica(idClinica){
+    this.db.collection('pacientes')
+    .where('idClinica','==', idClinica)
+    .where('status','==', "standby")
+    .onSnapshot(querySnapshot => {
+        $('#modalresults').empty()
+        if(querySnapshot.empty){
+            $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            const title = post.data().name + post.data().surname1 + post.data().surname2
+            var creditPlan = "";
+            if (post.data().is_credit_plan){
+                creditPlan = "Sí"
+            }else{
+                creditPlan = "No"
+            }
+            let postHtml = this.obtenerPostTemplate(
+                   title,
+                   "Dirección",
+                   post.data().address,
+                   "Email",
+                   post.data().email,
+                   "Teléfono",
+                   post.data().phone_number,
+                   "ID",
+                   post.data().id,
+                   "Credit Plan",
+                   creditPlan,
+                   "Saldo Pagado",
+                   post.data().payed_balance + "€",
+               )
+               $('#modalresults').append(postHtml) 
+           })
+        }
+    })
+}
+
 
 
 
@@ -234,7 +483,7 @@ class Clinica {
         field6,
       ) {
           return `
-          <article class="post">
+          <article onclick=test("${field1}") class="post">
                 <div class="post-titulo">
                     <h5>${title}</h5>
                 </div>
@@ -262,6 +511,12 @@ class Clinica {
                     ${field6title}: ${field6}
                     </div>        
                 </div>
+                <script>
+                function test(cif){
+                 const clinica = new Clinica();
+                 clinica.getClinicaforModal(cif);
+                }
+                </script>
             </article>`
-      }       
+      }  
 }

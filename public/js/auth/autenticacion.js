@@ -5,14 +5,13 @@ class Autenticacion {
 }
 
   autEmailPass (email, password) {
-    window.location.reload();
     firebase.auth().signInWithEmailAndPassword(email,password)
     .then(result => {
       if(result.user.emailVerified){
-        //Materialize.toast(`Bienvenido ${result.user.displayName}`, 5000)
+        Materialize.toast(`Bienvenido`, 5000)
         $('#avatar').attr('src', 'imagenes/usuario_auth.png')
       }else{
-        //firebase.auth().signOut()
+        firebase.auth().signOut()
         Materialize.toast(`Por favor, realize la verificación de la cuenta`, 5000)
       }
     })
@@ -46,7 +45,7 @@ class Autenticacion {
         firebase.auth().signOut()
 
         Materialize.toast(
-      `Bienvenido ${nombres}, debes realizar el proceso de verificación`,
+      `Bienvenido ${name}, debes realizar el proceso de verificación`,
       4000
     )
       })

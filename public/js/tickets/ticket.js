@@ -10,7 +10,7 @@ class Ticket {
     .onSnapshot(querySnapshot => {
     $('#clinicas').empty()
     if(querySnapshot.empty){
-        $('#clinicas').append()
+        $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)
     }else{
        querySnapshot.forEach(post => {
             let postHtml = this.obtenerPostTemplate(
@@ -38,13 +38,11 @@ showTicketByIdPaciente(idPaciente){
     this.db.collection('tickets')
     .where('idPaciente', '==', idPaciente)
     .onSnapshot(querySnapshot => {
-        $('#clinicas').empty()
+        $('#modalresultspaciente').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()//this.obtenerTemplatePostVacio())
+            $('#modalresultspaciente').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
-            const title = post.data().name + post.data().surname1 + post.data().surname2
-            var creditPlan ="";
             let postHtml = this.obtenerPostTemplate(
                 post.data().topic,
                 "Precio",
@@ -60,7 +58,38 @@ showTicketByIdPaciente(idPaciente){
                 "Fecha",
                 post.data().date,
                )
-               $('#clinicas').append(postHtml) 
+               $('#modalresultspaciente').append(postHtml) 
+           })
+        }
+    })
+}
+
+showTicketByIdPacienteByTopic(idPaciente,topic){
+    this.db.collection('tickets')
+    .where('idPaciente', '==', idPaciente)
+    .where('topic','==', topic)
+    .onSnapshot(querySnapshot => {
+        $('#modalresultspaciente').empty()
+        if(querySnapshot.empty){
+            $('#modalresultspaciente').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            let postHtml = this.obtenerPostTemplate(
+                post.data().topic,
+                "Precio",
+                post.data().price,
+                "CIF Clínica",
+                post.data().idClinica,
+                "Id Consultor",
+                post.data().idConsultor,
+                "DNI Paciente",
+                post.data().idPaciente,
+                "Puntos ganados",
+                post.data().points,
+                "Fecha",
+                post.data().date,
+               )
+               $('#modalresultspaciente').append(postHtml) 
            })
         }
     })
@@ -70,9 +99,9 @@ showTicketByIdClinica(idClinica){
     this.db.collection('tickets')
     .where('idClinica', '==', idClinica)
     .onSnapshot(querySnapshot => {
-        $('#clinicas').empty()
+        $('#modalresults').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()//this.obtenerTemplatePostVacio())
+            $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
             let postHtml = this.obtenerPostTemplate(
@@ -90,7 +119,7 @@ showTicketByIdClinica(idClinica){
                 "Fecha",
                 post.data().date,
                )
-               $('#clinicas').append(postHtml) 
+               $('#modalresults').append(postHtml) 
            })
         }
     })
@@ -102,7 +131,7 @@ showTicketByIdConsultor(idConsultor){
     .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()//this.obtenerTemplatePostVacio())
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
             let postHtml = this.obtenerPostTemplate(
@@ -132,7 +161,7 @@ showTicketByTopic(topic){
     .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()//this.obtenerTemplatePostVacio())
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
             let postHtml = this.obtenerPostTemplate(
@@ -151,6 +180,68 @@ showTicketByTopic(topic){
                 post.data().date,
                )
                $('#clinicas').append(postHtml) 
+           })
+        }
+    })
+}
+
+showTicketByTopicClinica(cif,topic){
+    this.db.collection('tickets')
+    .where('idClinica','==', cif)
+    .where('topic', '==', topic)
+    .onSnapshot(querySnapshot => {
+        $('#modalresults').empty()
+        if(querySnapshot.empty){
+            $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            let postHtml = this.obtenerPostTemplate(
+                post.data().topic,
+                "Precio",
+                post.data().price,
+                "CIF Clínica",
+                post.data().idClinica,
+                "Id Consultor",
+                post.data().idConsultor,
+                "DNI Paciente",
+                post.data().idPaciente,
+                "Puntos ganados",
+                post.data().points,
+                "Fecha",
+                post.data().date,
+               )
+               $('#modalresults').append(postHtml) 
+           })
+        }
+    })
+}
+
+showTicketByPacienteClinica(cif,idPaciente){
+    this.db.collection('tickets')
+    .where('idClinica','==', cif)
+    .where('idPaciente', '==', idPaciente)
+    .onSnapshot(querySnapshot => {
+        $('#modalresults').empty()
+        if(querySnapshot.empty){
+            $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            let postHtml = this.obtenerPostTemplate(
+                post.data().topic,
+                "Precio",
+                post.data().price,
+                "CIF Clínica",
+                post.data().idClinica,
+                "Id Consultor",
+                post.data().idConsultor,
+                "DNI Paciente",
+                post.data().idPaciente,
+                "Puntos ganados",
+                post.data().points,
+                "Fecha",
+                post.data().date,
+               )
+               $('#modalresults').append(postHtml) 
            })
         }
     })

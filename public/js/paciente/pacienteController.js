@@ -61,18 +61,6 @@ $(() => {
         
       })
 
-    $('#btnEditarClinica').click(() => {
-
-      const user = firebase.auth().currentUser
-
-    if(user == null){
-      Materialize.toast(`Para editar debes estar autenticado`, 4000)
-      return 
-    }
-
-    $('#modalCifClinica').modal('open')
-  })
-
   $('#btnIdPacientes').click(() => {
     const user = firebase.auth().currentUser
 
@@ -81,16 +69,8 @@ $(() => {
       return 
     }
 
-
-    $('#modalNombreClinica').modal('open')
-  })
-
-  $('#btnSearchClinica').click(() => {
-
-    const id = $('#nameSearchClinica').val()
-
-    const paciente = new Paciente()
-    paciente.showPacientesById(id)
+    $('#typeSearchid').val('findidpaciente')
+    $('#modalId').modal('open')
   })
 
   $('#btnEditarPaciente').click(() => {
@@ -102,16 +82,32 @@ $(() => {
     return 
   }
 
-  $('#modalCifClinica').modal('open')
+  $('#typeSearchid').val('editpaciente')
+  $('#modalId').modal('open')
 })
 
-$('#btnSearchCifClinica').click(() => {
-  const paciente = new Paciente();
-  const id = $('#nameSearchClinicaCif').val()
+$('#btnSearchid').click(() => {
 
-  paciente.getPacienteById(id)
+  const result = $('#idSearch').val()
+  const idpaciente = $('#idPaciente').val()
+  const type = $('#typeSearchid').val()
 
-})    
+  const paciente = new Paciente()
+  const ticket = new Ticket()
+
+  switch(type){
+    case "findidpaciente":
+      paciente.showPacientesById(result)
+    break
+    case "editpaciente":
+      paciente.getPacienteById(result)
+    break
+    case "conceptoticketpaciente":
+      ticket.showTicketByIdPacienteByTopic(idpaciente,result)
+    break
+}
+
+})
 
     
 
@@ -150,5 +146,44 @@ $('#btnSearchCifClinica').click(() => {
         paciente.showIsCreditPaciente()
 
       })
+
+      $('#btnTodosTicketsPaciente').click(() => {
+        
+        const id = $('#idPaciente').val()
+        const ticket = new Ticket()
+        ticket.showTicketByIdPaciente(id)
+
+      })
+
+      $('#btnConceptoTicketsPaciente').click(() => {
+        
+        const user = firebase.auth().currentUser
+
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+      
+        $('#typeSearchid').val('conceptoticketpaciente')
+        $('#modalId').modal('open')
+
+      })
+
+      $('#btnPuntosPaciente').click(() => {
+        
+        const id = $('#idPaciente').val()
+        const puntos = new Puntos()
+        puntos.showPuntosTotalPaciente(id)
+
+      })
+
+      $('#btnSaldosPaciente').click(() => {
+        
+        const id = $('#idPaciente').val()
+        const saldo = new Saldo()
+        saldo.showSaldoByIdPaciente(id)
+      })
+
+
       
   })

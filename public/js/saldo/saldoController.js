@@ -14,8 +14,8 @@ $(() => {
           Materialize.toast(`Para editar debes estar autenticado`, 4000)
           return 
         }
-        $('#typeSearchClinica').val('idpacientesaldo')
-        $('#modalNombreClinica').modal('open')
+        $('#typeSearchid').val('idpacientesaldo')
+        $('#modalId').modal('open')
       })
 
       
@@ -26,8 +26,8 @@ $(() => {
           Materialize.toast(`Para editar debes estar autenticado`, 4000)
           return 
         }
-        $('#typeSearchClinica').val('idclinicasaldo')
-        $('#modalNombreClinica').modal('open')
+        $('#typeSearchid').val('idclinicasaldo')
+        $('#modalId').modal('open')
       })
 
       $('#btnConsultorSaldo').click(() => {
@@ -37,15 +37,16 @@ $(() => {
           Materialize.toast(`Para editar debes estar autenticado`, 4000)
           return 
         }
-        $('#typeSearchClinica').val('idconsultorsaldo')
-        $('#modalNombreClinica').modal('open')
+        $('#typeSearchid').val('idconsultorsaldo')
+        $('#modalId').modal('open')
       })
 
-      $('#btnSearchClinica').click(() => {
+      $('#btnSearchid').click(() => {
 
-        const type = $('#typeSearchClinica').val()
-        const result = $('#nameSearchClinica').val()
+        const result = $('#idSearch').val()
+        const type = $('#typeSearchid').val()
         const saldo = new Saldo()
+        const cif = $('#cifClinica').val()
         
         
         switch(type){
@@ -58,6 +59,46 @@ $(() => {
             case "idconsultorsaldo":
             saldo.showSaldoByIdConsultor(result)
             break
+            case "idpacienteclinica":
+            saldo.showSaldoByIdPacienteByClinica(cif,result)
+            break;
+            case "idconsultorclinica":
+            saldo.showSaldoByIdConsultorByClinica(cif,result)
+            break
         }
+
+        $('#modalId').modal('close')
+      })
+
+      $('#btnTotalSaldoClinica').click(() => {
+
+        const saldo = new Saldo()
+        const cif = $('#cifClinica').val()
+        saldo.showSaldoByIdClinica(cif)
+
+      })
+
+      $('#btnPacienteSaldoClinica').click(() => {
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+
+        $('#typeSearchid').val('idpacienteclinica')
+        $('#modalId').modal('open')
+      })
+
+      $('#btnConsultorSaldoClinica').click(() => {
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+
+        $('#typeSearchid').val('idconsultorclinica')
+        $('#modalId').modal('open')
       })
 })

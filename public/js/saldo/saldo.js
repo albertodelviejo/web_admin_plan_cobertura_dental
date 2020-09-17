@@ -8,7 +8,7 @@ class Saldo {
         .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)
         }else{
             var total_paid_balance = 0
             var total_balance = 0
@@ -31,9 +31,9 @@ class Saldo {
         this.db.collection('pacientes')
         .where('idClinica', '==', idClinica)
         .onSnapshot(querySnapshot => {
-        $('#clinicas').empty()
+        $('#modalresults').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()
+            $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)
         }else{
             var total_paid_balance = 0
             var total_balance = 0
@@ -47,7 +47,7 @@ class Saldo {
             "Saldo pagado: " + total_paid_balance,
             "Saldo a deber: " + left_balance,
            )
-           $('#clinicas').append(postHtml)
+           $('#modalresults').append(postHtml)
         }
     })
     }
@@ -58,7 +58,7 @@ class Saldo {
         .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)
         }else{
             var total_paid_balance = 0
             var total_balance = 0
@@ -77,13 +77,13 @@ class Saldo {
     })
     }
 
-    showSaldoByIdPaciente(idPaciente){
+    showSaldoByIdPaciente(id){
         this.db.collection('pacientes')
-        .where('idPaciente', '==', idPaciente)
+        .where('id', '==', id)
         .onSnapshot(querySnapshot => {
-        $('#clinicas').empty()
+        $('#modalresultspaciente').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()
+            $('#modalresultspaciente').append(`<h4>No se han encontrado resultados</h4>`)
         }else{
             var total_paid_balance = 0
             var total_balance = 0
@@ -97,7 +97,59 @@ class Saldo {
             "Saldo pagado: " + total_paid_balance,
             "Saldo a deber: " + left_balance,
            )
-           $('#clinicas').append(postHtml)
+           $('#modalresultspaciente').append(postHtml)
+        }
+    })
+    }
+
+    showSaldoByIdConsultorByClinica(cif,idConsultor){
+        this.db.collection('pacientes')
+        .where('idClinica','==', cif)
+        .where('idConsultor', '==', idConsultor)
+        .onSnapshot(querySnapshot => {
+        $('#modalresults').empty()
+        if(querySnapshot.empty){
+            $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)
+        }else{
+            var total_paid_balance = 0
+            var total_balance = 0
+           querySnapshot.forEach(post => {
+            total_paid_balance = total_paid_balance + parseInt(post.data().paid_balance)
+            total_balance = total_balance + parseInt(post.data().total_balance)
+           })
+           const left_balance = total_balance - total_paid_balance
+           let postHtml = this.obtenerPostTemplate(
+            "Saldo concedido: " + total_balance,
+            "Saldo pagado: " + total_paid_balance,
+            "Saldo a deber: " + left_balance,
+           )
+           $('#modalresults').append(postHtml)
+        }
+    })
+    }
+
+    showSaldoByIdPacienteByClinica(cif,id){
+        this.db.collection('pacientes')
+        .where('idClinica','==', cif)
+        .where('id', '==', id)
+        .onSnapshot(querySnapshot => {
+        $('#modalresults').empty()
+        if(querySnapshot.empty){
+            $('#modalresults').append(`<h4>No se han encontrado resultados</h4>`)
+        }else{
+            var total_paid_balance = 0
+            var total_balance = 0
+           querySnapshot.forEach(post => {
+            total_paid_balance = total_paid_balance + parseInt(post.data().paid_balance)
+            total_balance = total_balance + parseInt(post.data().total_balance)
+           })
+           const left_balance = total_balance - total_paid_balance
+           let postHtml = this.obtenerPostTemplate(
+            "Saldo concedido: " + total_balance,
+            "Saldo pagado: " + total_paid_balance,
+            "Saldo a deber: " + left_balance,
+           )
+           $('#modalresults').append(postHtml)
         }
     })
     }

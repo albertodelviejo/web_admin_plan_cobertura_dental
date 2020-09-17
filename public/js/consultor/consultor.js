@@ -30,7 +30,7 @@ class Consultor {
     .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append()//this.obtenerTemplatePostVacio())
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
             const title = post.data().name + post.data().surname1 + post.data().surname2
@@ -61,7 +61,7 @@ class Consultor {
         .onSnapshot(querySnapshot => {
             $('#clinicas').empty()
             if(querySnapshot.empty){
-                $('#clinicas').append()//this.obtenerTemplatePostVacio())
+                $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
             }else{
                querySnapshot.forEach(post => {
                 const title = post.data().name + post.data().surname1 + post.data().surname2
@@ -206,6 +206,26 @@ class Consultor {
     })
     }
 
+    getConsultorforModal(id){
+        this.db.collection('consultores')
+        .where('id', '==', id)
+    .onSnapshot(querySnapshot => {
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h2>Error<h3>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            $('#modaltitleconsultor').text(post.data().name)
+            $('#idConsultor').val(id)
+            
+            $('.determinate').attr('style', `width: 0%`)
+              
+            $('#modalItemConsultor').modal('open')
+           })
+        }
+    })
+    }
+
 
 
     obtenerPostTemplate (
@@ -224,7 +244,7 @@ class Consultor {
         field6,
       ) {
         return `
-        <article class="post">
+        <article onclick=test("${field1}") class="post">
               <div class="post-titulo">
                   <h5>${title}</h5>
               </div>
@@ -252,6 +272,12 @@ class Consultor {
                   ${field6title}: ${field6}
                   </div>        
               </div>
+              <script>
+                function test(id){
+                 const consultor = new Consultor();
+                 consultor.getConsultorforModal(id);
+                }
+                </script>
           </article>`
       }
 }
