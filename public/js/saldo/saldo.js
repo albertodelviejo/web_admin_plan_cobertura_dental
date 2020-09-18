@@ -56,9 +56,9 @@ class Saldo {
         this.db.collection('pacientes')
         .where('idConsultor', '==', idConsultor)
         .onSnapshot(querySnapshot => {
-        $('#clinicas').empty()
+        $('#modalresultsconsultor').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)
+            $('#modalresultsconsultor').append(`<h4>No se han encontrado resultados</h4>`)
         }else{
             var total_paid_balance = 0
             var total_balance = 0
@@ -72,7 +72,7 @@ class Saldo {
             "Saldo pagado: " + total_paid_balance,
             "Saldo a deber: " + left_balance,
            )
-           $('#clinicas').append(postHtml)
+           $('#modalresultsconsultor').append(postHtml)
         }
     })
     }

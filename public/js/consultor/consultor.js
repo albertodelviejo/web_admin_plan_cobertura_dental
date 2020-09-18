@@ -206,9 +206,9 @@ class Consultor {
     })
     }
 
-    getConsultorforModal(id){
+    getConsultorforModal(idConsultor){
         this.db.collection('consultores')
-        .where('id', '==', id)
+        .where('idConsultor', '==', idConsultor)
     .onSnapshot(querySnapshot => {
         $('#clinicas').empty()
         if(querySnapshot.empty){
@@ -216,7 +216,7 @@ class Consultor {
         }else{
            querySnapshot.forEach(post => {
             $('#modaltitleconsultor').text(post.data().name)
-            $('#idConsultor').val(id)
+            $('#idConsultor').val(idConsultor)
             
             $('.determinate').attr('style', `width: 0%`)
               
@@ -226,6 +226,254 @@ class Consultor {
     })
     }
 
+    showAllPacientesFromConsultor(idConsultor){
+        this.db.collection('pacientes')
+        .where('idConsultor', '==', idConsultor)
+        .onSnapshot(querySnapshot => {
+            $('#modalresultsconsultor').empty()
+            if(querySnapshot.empty){
+                $('#modalresultsconsultor').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+            }else{
+               querySnapshot.forEach(post => {
+                const title = post.data().name + post.data().surname1 + post.data().surname2
+            var creditPlan = "";
+            if (post.data().is_credit_plan){
+                creditPlan = "Sí"
+            }else{
+                creditPlan = "No"
+            }
+                
+                    let postHtml = this.obtenerPostTemplate(
+                        title,
+                        "Dirección",
+                        post.data().address,
+                        "Email",
+                        post.data().email,
+                        "Teléfono",
+                        post.data().phone_number,
+                        "Puntos",
+                        post.data().points,
+                        "Credit Plan",
+                        creditPlan,
+                        "Saldo Pagado",
+                        post.data().payed_balance + "€",
+                        "ID",
+                        post.data().id
+                    )
+                   
+                   $('#modalresultsconsultor').append(postHtml) 
+               })
+            }
+        })
+    }
+
+    showAllPacientesByConsultorById(idConsultor,idPaciente){
+        this.db.collection('pacientes')
+        .where('id', '==', idPaciente)
+        .where('idConsultor', '==', idConsultor)
+        .onSnapshot(querySnapshot => {
+            $('#modalresultsconsultor').empty()
+            if(querySnapshot.empty){
+                $('#modalresultsconsultor').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+            }else{
+               querySnapshot.forEach(post => {
+                const title = post.data().name + post.data().surname1 + post.data().surname2
+            var creditPlan = "";
+            if (post.data().is_credit_plan){
+                creditPlan = "Sí"
+            }else{
+                creditPlan = "No"
+            }
+                
+                    let postHtml = this.obtenerPostTemplate(
+                        title,
+                        "Dirección",
+                        post.data().address,
+                        "Email",
+                        post.data().email,
+                        "Teléfono",
+                        post.data().phone_number,
+                        "Puntos",
+                        post.data().points,
+                        "Credit Plan",
+                        creditPlan,
+                        "Saldo Pagado",
+                        post.data().payed_balance + "€",
+                        "ID",
+                        post.data().id
+                    )
+                   
+                   $('#modalresultsconsultor').append(postHtml) 
+               })
+            }
+        })
+    }
+
+    showAllPacientesByConsultorByClinica(idConsultor,idClinica){
+        this.db.collection('pacientes')
+        .where('idClinica', '==', idClinica)
+        .where('idConsultor', '==', idConsultor)
+        .onSnapshot(querySnapshot => {
+            $('#modalresultsconsultor').empty()
+            if(querySnapshot.empty){
+                $('#modalresultsconsultor').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+            }else{
+               querySnapshot.forEach(post => {
+                const title = post.data().name + post.data().surname1 + post.data().surname2
+            var creditPlan = "";
+            if (post.data().is_credit_plan){
+                creditPlan = "Sí"
+            }else{
+                creditPlan = "No"
+            }
+                
+                    let postHtml = this.obtenerPostTemplate(
+                        title,
+                        "Dirección",
+                        post.data().address,
+                        "Email",
+                        post.data().email,
+                        "Teléfono",
+                        post.data().phone_number,
+                        "Puntos",
+                        post.data().points,
+                        "Credit Plan",
+                        creditPlan,
+                        "Saldo Pagado",
+                        post.data().payed_balance + "€",
+                        "ID",
+                        post.data().id
+                    )
+                   
+                   $('#modalresultsconsultor').append(postHtml) 
+               })
+            }
+        })
+    }
+
+
+showTicketByIdConsultor(idConsultor){
+    this.db.collection('tickets')
+    .where('idConsultor', '==', idConsultor)
+    .onSnapshot(querySnapshot => {
+        $('#modalresultsconsultor').empty()
+        if(querySnapshot.empty){
+            $('#modalresultsconsultor').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            let postHtml = this.obtenerPostTemplate(
+                post.data().topic,
+                "Precio",
+                post.data().price,
+                "CIF Clínica",
+                post.data().idClinica,
+                "Id Consultor",
+                post.data().idConsultor,
+                "DNI Paciente",
+                post.data().idPaciente,
+                "Puntos ganados",
+                post.data().points,
+                "Fecha",
+                post.data().date,
+               )
+               $('#modalresultsconsultor').append(postHtml) 
+           })
+        }
+    })
+}
+
+showTicketByIdConsultorByTopic(idConsultor, topic){
+    this.db.collection('tickets')
+    .where('idConsultor', '==', idConsultor)
+    .where('topic','==', topic)
+    .onSnapshot(querySnapshot => {
+        $('#modalresultsconsultor').empty()
+        if(querySnapshot.empty){
+            $('#modalresultsconsultor').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            let postHtml = this.obtenerPostTemplate(
+                post.data().topic,
+                "Precio",
+                post.data().price,
+                "CIF Clínica",
+                post.data().idClinica,
+                "Id Consultor",
+                post.data().idConsultor,
+                "DNI Paciente",
+                post.data().idPaciente,
+                "Puntos ganados",
+                post.data().points,
+                "Fecha",
+                post.data().date,
+               )
+               $('#modalresultsconsultor').append(postHtml) 
+           })
+        }
+    })
+}
+
+showTicketByIdConsultorByPaciente(idConsultor, idPaciente){
+    this.db.collection('tickets')
+    .where('idConsultor', '==', idConsultor)
+    .where('idPaciente','==', idPaciente)
+    .onSnapshot(querySnapshot => {
+        $('#modalresultsconsultor').empty()
+        if(querySnapshot.empty){
+            $('#modalresultsconsultor').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            let postHtml = this.obtenerPostTemplate(
+                post.data().topic,
+                "Precio",
+                post.data().price,
+                "CIF Clínica",
+                post.data().idClinica,
+                "Id Consultor",
+                post.data().idConsultor,
+                "DNI Paciente",
+                post.data().idPaciente,
+                "Puntos ganados",
+                post.data().points,
+                "Fecha",
+                post.data().date,
+               )
+               $('#modalresultsconsultor').append(postHtml) 
+           })
+        }
+    })
+}
+
+showTicketByIdConsultorByClinica(idConsultor, idClinica){
+    this.db.collection('tickets')
+    .where('idConsultor', '==', idConsultor)
+    .where('idClinica','==', idClinica)
+    .onSnapshot(querySnapshot => {
+        $('#modalresultsconsultor').empty()
+        if(querySnapshot.empty){
+            $('#modalresultsconsultor').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+            let postHtml = this.obtenerPostTemplate(
+                post.data().topic,
+                "Precio",
+                post.data().price,
+                "CIF Clínica",
+                post.data().idClinica,
+                "Id Consultor",
+                post.data().idConsultor,
+                "DNI Paciente",
+                post.data().idPaciente,
+                "Puntos ganados",
+                post.data().points,
+                "Fecha",
+                post.data().date,
+               )
+               $('#modalresultsconsultor').append(postHtml) 
+           })
+        }
+    })
+}
 
 
     obtenerPostTemplate (
@@ -242,9 +490,11 @@ class Consultor {
         field5,
         field6title,
         field6,
+        field7title,
+        field7
       ) {
         return `
-        <article onclick=test("${field1}") class="post">
+        <article onclick=test("${field6}") class="post">
               <div class="post-titulo">
                   <h5>${title}</h5>
               </div>

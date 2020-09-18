@@ -75,19 +75,35 @@ $(() => {
 
      $('#btnSearchid').click(() => {
 
-        const id = $('#idSearch').val()
+        const result = $('#idSearch').val()
         const type = $('#typeSearchid').val()
+        const idConsultor= $('#idConsultor').val()
 
         const consultor = new Consultor()
 
         switch(type){
           case "findidconsultor":
-          consultor.showConsultorById(id)
+          consultor.showConsultorById(result)
           break
           case "editconsultor":
-          consultor.getConsultorById(id)
+          consultor.getConsultorById(result)
           break
-    }
+          case "findidpacienteconsultor":
+          consultor.showAllPacientesByConsultorById(idConsultor,result)
+          break
+          case "findpacienteconsultorclinica":
+          consultor.showAllPacientesByConsultorByClinica(idConsultor, result)
+          break  
+          case "findticketsconsultor":
+          consultor.showTicketByIdConsultorByTopic(idConsultor, result)
+          break
+          case "findticketsconsultorpaciente":
+          consultor.showTicketByIdConsultorByPaciente(idConsultor, result)
+          break
+          case "findticketsconsultorclinica":
+            consultor.showTicketByIdConsultorByClinica(idConsultor,result)
+            break
+        }
     $('#modalId').modal('close')
   })
   
@@ -119,5 +135,83 @@ $(() => {
         consultor.showStandbyConsultor()
 
       })
+
+      $('#btnTodosPacientesConsultor').click(() => {
+
+        const consultor = new Consultor()
+        const idConsultor= $('#idConsultor').val()
+        consultor.showAllPacientesFromConsultor(idConsultor)
+
+      }) 
+
+      $('#btnIdPacientesConsultor').click(() => {
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+        $('#typeSearchid').val('findidpacienteconsultor')
+        $('#modalId').modal('open')
+      })
+
+      $('#btnPacientesConsultorClinica').click(() => {
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+        $('#typeSearchid').val('findpacienteconsultorclinica')
+        $('#modalId').modal('open')
+      })
+
+      $('#btnTodosTicketsConsultor').click(() => {
+
+        const consultor = new Consultor()
+        const idConsultor= $('#idConsultor').val()
+        consultor.showTicketByIdConsultor(idConsultor)
+
+      }) 
+
+      $('#btnConceptoTicketsConsultor').click(() => {
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+        $('#typeSearchid').val('findticketsconsultor')
+        $('#modalId').modal('open')
+      })
+
+      $('#btnConsultorTicketsPaciente').click(() => {
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+        $('#typeSearchid').val('findticketsconsultorpaciente')
+        $('#modalId').modal('open')
+      })
+
+      $('#btnConsultorTicketsClinica').click(() => {
+        const user = firebase.auth().currentUser
+    
+        if(user == null){
+          Materialize.toast(`Para editar debes estar autenticado`, 4000)
+          return 
+        }
+        $('#typeSearchid').val('findticketsconsultorclinica')
+        $('#modalId').modal('open')
+      })
       
+      $('#btnSaldosConsultor').click(() => {
+
+        const saldo = new Saldo()
+        const idConsultor= $('#idConsultor').val()
+        saldo.showSaldoByIdConsultor(idConsultor)
+
+      }) 
   })
