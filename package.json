@@ -1,7 +1,7 @@
 {
   "name": "web-admin-panel",
   "version": "1.0.0",
-  "description": "Web admin panel for Plan Cobertura Dental",
+  "description": "Blog Geek",
   "main": "app/general.js",
   "scripts": {
     "test": "no test"
@@ -13,7 +13,7 @@
   "keywords": [
     "blog"
   ],
-  "author": "Alberto Del Viejo",
+  "author": "Juan Guillermo Gómez",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jggomez/blogvideos-ucc/issues"

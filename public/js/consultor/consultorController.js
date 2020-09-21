@@ -9,11 +9,16 @@ $(() => {
         return 
       }
 
+      $('typeFormConsultor').val('update')
+
       $('#modalAltaConsultor').modal('open')
       
     })
 
     $('#btnCreateConsultor').click(() => {
+
+        const typeFormConsultor = $('#typeFormConsultor').val()
+        
         const consultor = new Consultor()
 
         const name = $('#nameAltaConsultor').val()
@@ -27,25 +32,103 @@ $(() => {
         const idConsultor = $('#idConsultorAltaConsultor').val()
         const status = $('#statusAltaConsultor').val()
         $('.determinate').attr('style', `width: 0%`)    
-        
-        consultor.createConsultor(
-            name, 
-        surname1, 
-        surname2, 
-        idConsultor,
-        dni, 
-        phone_number,
-        email,  
-        birthday, 
-        address, 
-        status)
-            .then(resp => {
-              Materialize.toast(`Consultor añadido correctamente`, 4000)
+
+        if (name == "")
+          {
+            alert("Por favor, introduzca un nombre");
+            return false;
+          }
+          if (surname1 == "")
+          {
+            alert("Por favor, introduzca el primer apellido");
+            return false;
+          }
+          if (surname2 == "")
+          {
+            alert("Por favor, introduzca el segundo apellido");
+            return false;
+          }
+          if (email == "")
+          {
+            alert("Por favor, introduzca el email");
+            return false;
+          }
+          if (phone_number == "")
+          {
+            alert("Por favor, introduzca un teléfono");
+            return false;
+          }
+          if (address == "")
+          {
+            alert("Por favor, introduzca una dirección");
+            return false;
+          }
+          if (birthday == "")
+          {
+            alert("Por favor, introduzca fecha de nacimiento");
+            return false;
+          }
+          if (dni == "")
+          {
+            alert("Por favor, introduzca un id");
+            return false;
+          }
+          if (idConsultor == "")
+          {
+            alert("Por favor, introduzca un id Consultor");
+            return false;
+          }
+          if (status == "")
+          {
+            alert("Por favor, introduzca un estatus");
+            return false;
+          }
+
+        switch(typeFormConsultor){
+          case "update":
+            consultor.updateClinica(
+              name, 
+          surname1, 
+          surname2, 
+          idConsultor,
+          dni, 
+          phone_number,
+          email,  
+          birthday, 
+          address, 
+          status
+            ).then(resp => {
+              Materialize.toast(`Consultor actualizado correctamente`, 4000)
               $('.modal').modal('close')
             })
             .catch(err => {
               Materialize.toast(`Error => ${err}`, 4000)
             })
+
+          break
+          case "create":
+            consultor.createConsultor(
+              name, 
+          surname1, 
+          surname2, 
+          idConsultor,
+          dni, 
+          phone_number,
+          email,  
+          birthday, 
+          address, 
+          status)
+              .then(resp => {
+                Materialize.toast(`Consultor añadido correctamente`, 4000)
+                $('.modal').modal('close')
+              })
+              .catch(err => {
+                Materialize.toast(`Error => ${err}`, 4000)
+              })
+          break
+        }
+        
+        
         
       })
 

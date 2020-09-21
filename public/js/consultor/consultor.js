@@ -4,7 +4,13 @@ class Consultor {
     }
 
     createConsultor (name, surname1, surname2, idConsultor, dni, phone, email, birthday, address) {
-        return this.db.collection("consultores").doc(idConsultor).set({
+        var docRef = this.db.collection("consultores").doc(idConsultor);
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                Materialize.toast(`El consultor ya existe`, 4000)
+            } else {
+         docRef.set({
             name: name,
             surname1: surname1,
             surname2: surname2,
@@ -20,9 +26,45 @@ class Consultor {
             fecha_alta: firebase.firestore.FieldValue.serverTimestamp(),
         }).then(refDoc => {
             console.log(`Id de consultor => ${refDoc.id}`)
+            Materialize.toast(`El consultor se ha añadido correctamente`, 4000)
         }).catch(error => {
           console.log(`Error de alta => ${error}`)
         })
+    }
+})
+    }
+
+    updateClinica(name, surname1, surname2, idConsultor, dni, phone, email, birthday, address){
+        var docRef = this.db.collection("consultores").doc(idConsultor);
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                docRef.update({
+                    name: name,
+                    surname1: surname1,
+                    surname2: surname2,
+                    id: dni,
+                    idConsultor: idConsultor,
+                    phone_number: phone,
+                    email: email,
+                    address: address,
+                    birthday: birthday,
+                    status: "active",
+                }).then(refDoc => {
+                    // console.log(`Id de clinica => ${refDoc.cif}`)
+                     Materialize.toast(`Consultor actualizado correctamente`, 4000)
+                     $('.modal').modal('close')
+                 }).catch(error => {
+                   console.log(`Error de alta => ${error}`)
+                   Materialize.toast(`Error de alta`, 4000)
+                     $('.modal').modal('close')
+                 })
+            } else {
+                Materialize.toast(`El consultor no existe`, 4000)
+            }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
     }
 
     showConsultorAll(){
@@ -199,6 +241,8 @@ class Consultor {
         $('#idConsultorAltaConsultor').val(post.data().idConsultor)
         $('#statusAltaConsultor').val(post.data().status)
         $('.determinate').attr('style', `width: 0%`)
+
+        $('typeFormConsultor').val('update')
               
             $('#modalAltaConsultor').modal('open')
            })

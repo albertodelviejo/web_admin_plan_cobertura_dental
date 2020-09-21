@@ -8,12 +8,16 @@ $(() => {
         Materialize.toast(`Para dar de alta debes estar autenticado`, 4000)
         return 
       }
+      $('typeForm').val('create')
 
       $('#modalAltaPaciente').modal('open')
       
     })
 
     $('#btnCreatePaciente').click(() => {
+
+      const typeForm = $('#typeForm').val()
+      
         const paciente = new Paciente()
 
         const name = $('#nameAltaPaciente').val()
@@ -31,33 +35,146 @@ $(() => {
         const is_credit_plan = $('#iscreditAltaPaciente').val()
         const marital_status = $('#maritalAltaPaciente').val()
         const mobile_number = $('#mobileAltaPaciente').val() 
-        const status = $('#statusAltaPaciente').val()
-        $('.determinate').attr('style', `width: 0%`)    
+        const status = ""
+        if($('#statusActivePaciente').prop("checked")){
+          status = "active"
+        }else if ($('#statusInactivePaciente').prop("checked")){
+          status = "inactive"
+        }else if ($('#statusStandbyPaciente').prop("checked")){
+          status = "standby"
+        }
+        $('.determinate').attr('style', `width: 0%`)  
         
-        paciente.createPaciente(
-            name, 
-        surname1, 
-        surname2, 
-        email, 
-        gender, 
-        birthday, 
-        address, 
-        phone_number,
-        id_type, 
-        id, 
-        idClinica,
-        idConsultor,
-        is_credit_plan,
-        marital_status,
-        mobile_number,
-        status)
-            .then(resp => {
-              Materialize.toast(`Paciente añadida correctamente`, 4000)
-              $('.modal').modal('close')
-            })
-            .catch(err => {
-              Materialize.toast(`Error => ${err}`, 4000)
-            })
+        if (name == "")
+          {
+            alert("Por favor, introduzca un nombre");
+            return false;
+          }
+          if (surname1 == "")
+          {
+            alert("Por favor, introduzca el primer apellido");
+            return false;
+          }
+          if (surname2 == "")
+          {
+            alert("Por favor, introduzca el segundo apellido");
+            return false;
+          }
+          if (email == "")
+          {
+            alert("Por favor, introduzca el email");
+            return false;
+          }
+          if (phone_number == "")
+          {
+            alert("Por favor, introduzca un teléfono");
+            return false;
+          }
+          if (address == "")
+          {
+            alert("Por favor, introduzca una dirección");
+            return false;
+          }
+          if (id_type == "")
+          {
+            alert("Por favor, introduzca un tipo de id");
+            return false;
+          }
+          if (id == "")
+          {
+            alert("Por favor, introduzca un id");
+            return false;
+          }
+          if (idClinica == "")
+          {
+            alert("Por favor, introduzca un id Clinica");
+            return false;
+          }
+          if (idConsultor == "")
+          {
+            alert("Por favor, introduzca un id Consultor");
+            return false;
+          }
+          if (is_credit_plan == "")
+          {
+            alert("Por favor, introduzca si tiene credit plan");
+            return false;
+          }
+          if (gender == "")
+          {
+            alert("Por favor, introduzca un genero");
+            return false;
+          }
+          if (marital_status == "")
+          {
+            alert("Por favor, introduzca un estado civil");
+            return false;
+          }
+          if (mobile_number == "")
+          {
+            alert("Por favor, introduzca un numero movil");
+            return false;
+          }
+          if (status == "")
+          {
+            alert("Por favor, introduzca un estatus");
+            return false;
+          }
+        
+        switch(typeForm){
+          case "create":
+            paciente.createPaciente(
+              name, 
+          surname1, 
+          surname2, 
+          email, 
+          gender, 
+          birthday, 
+          address, 
+          phone_number,
+          id_type, 
+          id, 
+          idClinica,
+          idConsultor,
+          is_credit_plan,
+          marital_status,
+          mobile_number,
+          status)
+              .then(resp => {
+                Materialize.toast(`Paciente añadida correctamente`, 4000)
+                $('.modal').modal('close')
+              })
+              .catch(err => {
+                Materialize.toast(`Error => ${err}`, 4000)
+              })
+          break
+          case "update":
+              paciente.updatePaciente(name, 
+                surname1, 
+                surname2, 
+                email, 
+                gender, 
+                birthday, 
+                address, 
+                phone_number,
+                id_type, 
+                id, 
+                idClinica,
+                idConsultor,
+                is_credit_plan,
+                marital_status,
+                mobile_number,
+                status)
+                    .then(resp => {
+                      Materialize.toast(`Paciente actualizado correctamente`, 4000)
+                      $('.modal').modal('close')
+                    })
+                    .catch(err => {
+                      Materialize.toast(`Error => ${err}`, 4000)
+                    })
+          break
+        }
+        
         
       })
 

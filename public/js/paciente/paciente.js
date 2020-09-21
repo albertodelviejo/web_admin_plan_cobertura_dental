@@ -21,12 +21,18 @@ class Paciente {
         mobile_number,
         status
         ){
+            var docRef = this.db.collection("pacientes").doc(id);
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                Materialize.toast(`El paciente ya existe`, 4000)
+            } else {
 
             const clinica = new Clinica()
 
             clinica.addPacienteToClinica(idClinica, id)
 
-            return this.db.collection("pacientes").doc(id).set({
+            docRef.set({
                 name: name,
                 surname1: surname1,
                 surname2: surname2,
@@ -48,11 +54,67 @@ class Paciente {
                 status: status
             }).then(refDoc => {
                 console.log(`Id de paciente => ${refDoc.id}`)
+                Materialize.toast(`El paciente se ha dado de alta`, 4000)
             }).catch(error => {
               console.log(`Error de alta => ${error}`)
             })
-    }
+        }
+    })
+}
 
+updatePaciente(name, 
+    surname1, 
+    surname2, 
+    email, 
+    gender, 
+    birthday, 
+    address, 
+    phone_number,
+    id_type, 
+    id, 
+    idClinica,
+    idConsultor,
+    is_credit_plan,
+    marital_status,
+    mobile_number,
+    status){
+    var docRef = this.db.collection("pacientes").doc(id);
+
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            docRef.update({
+                name: name,
+                surname1: surname1,
+                surname2: surname2,
+                email: email,
+                gender: gender,
+                birthday: birthday,
+                address: address,
+                phone_number: phone_number,
+                id_type: id_type,
+                id: id,
+                idClinica: idClinica,
+                idConsultor: idConsultor,
+                is_credit_plan: is_credit_plan,
+                marital_status: marital_status,
+                mobile_number: mobile_number,
+                status: status
+            }).then(refDoc => {
+                // console.log(`Id de clinica => ${refDoc.cif}`)
+                 Materialize.toast(`Paciente actualizado correctamente`, 4000)
+                 $('.modal').modal('close')
+             }).catch(error => {
+               console.log(`Error de alta => ${error}`)
+               Materialize.toast(`Error de alta`, 4000)
+                 $('.modal').modal('close')
+             })
+        } else {
+            Materialize.toast(`El paciente no existe`, 4000)
+        }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+}
 
     showPacienteAll(){
         this.db.collection('pacientes')
@@ -340,8 +402,20 @@ class Paciente {
         $('#iscreditAltaPaciente').val(post.data().is_credit_plan)
         $('#maritalAltaPaciente').val(post.data().marital_status)
         $('#mobileAltaPaciente').val(post.data().mobile_number) 
-        $('#statusAltaPaciente').val(post.data().status)
+        switch(post.data().status){
+            case "active":
+                $('#statusActive').prop("checked",true)
+            break
+            case "inactive":
+                $('#statusInactive').prop("checked",true)
+            break
+            case "standby":
+                $('#statusStandby').prop("checked",true)
+            break
+        }
         $('.determinate').attr('style', `width: 0%`)
+
+        $('typeForm').val('update')
               
             $('#modalAltaPaciente').modal('open')
            })

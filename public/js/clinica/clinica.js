@@ -4,24 +4,71 @@ class Clinica {
     }
   
     createClinica (name, razon_social, CIF, phone, mail, address, manager, status) {
-        return this.db.collection("clinicas").doc(CIF).set({
-            name: name,
-            razon_social: razon_social,
-            cif: CIF,
-            phone: phone,
-            mail: mail,
-            address: address,
-            manager: manager,
-            pacientes: [""],
-            tikets: [""],
-            offers: [""],
-            fecha_alta: firebase.firestore.FieldValue.serverTimestamp(),
-            status: status
-        }).then(refDoc => {
-            console.log(`Id de clinica => ${refDoc.id}`)
-        }).catch(error => {
-          console.log(`Error de alta => ${error}`)
-        })
+
+        var docRef = this.db.collection("clinicas").doc(CIF);
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                Materialize.toast(`La clinica ya existe`, 4000)
+            } else {
+                console.log("No such document!");
+                docRef.set({
+                    name: name,
+                    razon_social: razon_social,
+                    cif: CIF,
+                    phone: phone,
+                    mail: mail,
+                    address: address,
+                    manager: manager,
+                    pacientes: [""],
+                    tikets: [""],
+                    offers: [""],
+                    fecha_alta: firebase.firestore.FieldValue.serverTimestamp(),
+                    status: status
+                }).then(refDoc => {
+                   // console.log(`Id de clinica => ${refDoc.cif}`)
+                    Materialize.toast(`Clinica añadida correctamente`, 4000)
+                    $('.modal').modal('close')
+                }).catch(error => {
+                  console.log(`Error de alta => ${error}`)
+                  Materialize.toast(`Error de alta`, 4000)
+                    $('.modal').modal('close')
+                })
+            }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
+    }
+
+    updateClinica(name, razon_social, CIF, phone, mail, address, manager, status){
+        var docRef = this.db.collection("clinicas").doc(CIF);
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                docRef.update({
+                    name: name,
+                    razon_social: razon_social,
+                    cif: CIF,
+                    phone: phone,
+                    mail: mail,
+                    address: address,
+                    manager: manager,
+                    status: status
+                }).then(refDoc => {
+                    // console.log(`Id de clinica => ${refDoc.cif}`)
+                     Materialize.toast(`Clinica actualizada correctamente`, 4000)
+                     $('.modal').modal('close')
+                 }).catch(error => {
+                   console.log(`Error de alta => ${error}`)
+                   Materialize.toast(`Error de alta`, 4000)
+                     $('.modal').modal('close')
+                 })
+            } else {
+                Materialize.toast(`La clinica no existe`, 4000)
+            }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
     }
 
     showClinicaAll(){
@@ -103,7 +150,17 @@ class Clinica {
             $('#mailAltaClinica').val(post.data().mail,)
             $('#addressAltaClinica').val(post.data().address,)
             $('#managerAltaClinica').val(post.data().manager,)
-            $('#idAltaClinica').val()
+            switch(post.data().status){
+                case "active":
+                    $('#statusActive').prop("checked",true)
+                break
+                case "inactive":
+                    $('#statusInactive').prop("checked",true)
+                break
+                case "standby":
+                    $('#statusStandby').prop("checked",true)
+                break
+            }
             $('.determinate').attr('style', `width: 0%`)
               
             $('#modalAltaClinica').modal('open')
@@ -111,6 +168,7 @@ class Clinica {
         }
     })
     }
+
 
     getClinicaforModal(cif){
         this.db.collection('clinicas')

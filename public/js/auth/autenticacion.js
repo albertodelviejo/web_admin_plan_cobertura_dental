@@ -25,6 +25,13 @@ class Autenticacion {
           displayname : name
         })
 
+        this.db.collection("usuarios").add({
+          uid: result.user.uid,
+          name: name,
+          email: email,
+          idConsultor: idConsultor
+        })
+
         const configuracion = {
           url : 'https://plancoberturadentalapp.web.app/'
         }
@@ -36,11 +43,7 @@ class Autenticacion {
             $('.modal').modal('close')
         })
 
-        this.db.collection("usuarios").doc(result.user.uid).set({
-          name: name,
-          email: email,
-          idConsultor: idConsultor
-        })
+        
 
         firebase.auth().signOut()
 

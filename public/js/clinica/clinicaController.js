@@ -9,12 +9,16 @@ $(() => {
         return 
       }
 
+      $('#type').val('create')
       $('#modalAltaClinica').modal('open')
       
     })
 
     $('#btnCreateClinica').click(() => {
-        const clinica = new Clinica()
+
+      const type = $('#type').val()
+
+      const clinica = new Clinica()
 
         const name = $('#nameAltaClinica').val()
         const razon = $('#razonAltaClinica').val()
@@ -23,10 +27,63 @@ $(() => {
         const mail = $('#mailAltaClinica').val()
         const address = $('#addressAltaClinica').val()
         const manager = $('#managerAltaClinica').val()
-        const status = $('#statusAltaClinica').val()
+        var status = ""
+
+        if($('#statusActive').prop("checked")){
+          status = "active"
+        }else if ($('#statusInactive').prop("checked")){
+          status = "inactive"
+        }else if ($('#statusStandby').prop("checked")){
+          status = "standby"
+        }
+
+        if (name == "")
+          {
+            alert("Por favor, introduzca un nombre");
+            return false;
+          }
+          if (razon == "")
+          {
+            alert("Por favor, introduzca una razón social");
+            return false;
+          }
+          if (cif == "")
+          {
+            alert("Por favor, introduzca un cif");
+            return false;
+          }
+          if (phone == "")
+          {
+            alert("Por favor, introduzca un teléfono");
+            return false;
+          }
+          if (mail == "")
+          {
+            alert("Por favor, introduzca un email");
+            return false;
+          }
+          if (address == "")
+          {
+            alert("Por favor, introduzca una dirección");
+            return false;
+          }
+          if (manager == "")
+          {
+            alert("Por favor, introduzca un manager");
+            return false;
+          }
+          if (status == "")
+          {
+            alert("Por favor, introduzca un estatus");
+            return false;
+          }
+
+
         $('.determinate').attr('style', `width: 0%`)
-        
-        clinica.createClinica(
+
+      switch(type){
+        case "create":
+          clinica.createClinica(
             name,
             razon,
             cif,
@@ -35,14 +92,24 @@ $(() => {
             address, 
             manager, 
             status)
-            .then(resp => {
-              Materialize.toast(`Clinica añadida correctamente`, 4000)
-              $('.modal').modal('close')
-            })
-            .catch(err => {
-              Materialize.toast(`Error => ${err}`, 4000)
-            })
-      })
+        break
+        case "update":
+            clinica.updateClinica(
+              name,
+            razon,
+            cif,
+            phone,
+            mail, 
+            address, 
+            manager, 
+            status
+            )
+        break;
+      }
+    })
+        
+        
+        
 
     $('#btnEditarClinica').click(() => {
 
@@ -52,7 +119,8 @@ $(() => {
       Materialize.toast(`Para editar debes estar autenticado`, 4000)
       return 
     }
-
+    
+    $('#type').val('update')
     $('#modalCifClinica').modal('open')
   })
 

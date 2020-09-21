@@ -131,79 +131,81 @@
         </div>
     </footer>
 
-    <!-- Modal de Inicio de Sesión -->
-    <div id="modalSesion" class="modal modal-registro">
-        <div class="modal-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col s12 m6 registro-bienvenida">
-                        <h4>Bienvenido a Plan Cobertura Dental</h4>
-                        <div class="registro-bienvenida-texto">
-                            Estamos encantados de tener de vuelta
+        <!-- Modal de Inicio de Sesión -->
+        <div id="modalSesion" class="modal modal-registro">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 m6 registro-bienvenida">
+                            <h4>Bienvenido a Plan Cobertura Dental</h4>
+                            <div class="registro-bienvenida-texto">
+                                Estamos encantados de tener de vuelta
+                            </div>
+                            <span>Inicia Sesión</span>
                         </div>
-                        <span>Inicia Sesión</span>
-                    </div>
-                    <div class="col s12 m6 registro-formulario">
-                        <div class="input-field">                            
-                            <input id="emailSesion" type="email" required/>
-                            <label for="emailSesion">E-mail:</label>
+                        <div class="col s12 m6 registro-formulario">
+                            <div class="input-field">                            
+                                <input id="emailSesion" type="email" required/>
+                                <label for="emailSesion">E-mail:</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="passwordSesion" type="password" required />
+                                <label for="passwordSesion">Password:</label>
+                            </div>
+                            <div class="div-btnInicioSesion">
+                                <a id="btnInicioEmail" class="btn waves-effect waves-light">Iniciar Sesión<i class="material-icons right">send</i></a>
+                            </div>           
                         </div>
-                        <div class="input-field">
-                            <input id="passwordSesion" type="password" required />
-                            <label for="passwordSesion">Password:</label>
+                        <div class="col s12 m12 div-btnRegistrarse">
+                            <a id="btnRegistrarse" class="btn waves-effect waves-light">Crear una cuenta<i class="material-icons left">account_box</i></a>                        
                         </div>
-                        <div class="div-btnInicioSesion">
-                            <a id="btnInicioEmail" class="btn waves-effect waves-light">Iniciar Sesión<i class="material-icons right">send</i></a>
-                        </div>           
-                    </div>
-                    <div class="col s12 m12 div-btnRegistrarse">
-                        <a id="btnRegistrarse" class="btn waves-effect waves-light">Crear una cuenta<i class="material-icons left">account_box</i></a>                        
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    
+        <!-- Modal de registro -->
+        <div id="modalRegistro" class="modal modal-registro">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 m6 registro-bienvenida">
+                            <h4>Registro de nuevo usuario</h4>
+                            <div class="registro-bienvenida-texto">
+                                Nuevo usuario con acceso de lectura
+                            </div>
+                            <span>Introduzca los datos</span>
+                        </div>
+                        <div class="col s12 m6 registro-formulario">
+                            <div class="input-field">
+                                <input id="nombreContactoReg" type="text"  maxlength="50" data-length="50" required />
+                                <label for="nombreContactoReg">Nombres:</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="emailContactoReg" type="email"  maxlength="50" data-length="50" required />
+                                <label for="emailContactoReg">E-mail:</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="passwordReg" type="password"  maxlength="10" data-length="10" required />
+                                <label for="passwordReg">Password:</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="idconsultorReg" type="password"  maxlength="10" data-length="10" required />
+                                <label for="idconsultorReg">Id de consultor: </label>
+                            </div>
+                            <div class="div-btnInicioSesion">
+                                <a id="btnRegistroEmail" class="btn waves-effect waves-light">Registrarse<i class="material-icons left">account_box</i></a>
+                            </div>                        
+                        </div>
+                        <div class="col s12 m12 div-btnRegistrarse">
+                            <a id="btnIniciarSesion" class="btn waves-effect waves-light">Iniciar Sesión<i class="material-icons right">send</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Modal de registro -->
-    <div id="modalRegistro" class="modal modal-registro">
-        <div class="modal-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col s12 m6 registro-bienvenida">
-                        <h4>Registro de nuevo usuario</h4>
-                        <div class="registro-bienvenida-texto">
-                            Nuevo usuario con acceso de lectura
-                        </div>
-                        <span>Introduzca los datos</span>
-                    </div>
-                    <div class="col s12 m6 registro-formulario">
-                        <div class="input-field">
-                            <input id="nombreContactoReg" type="text"  maxlength="50" data-length="50" required />
-                            <label for="nombreContactoReg">Nombres:</label>
-                        </div>
-                        <div class="input-field">
-                            <input id="emailContactoReg" type="email"  maxlength="50" data-length="50" required />
-                            <label for="emailContactoReg">E-mail:</label>
-                        </div>
-                        <div class="input-field">
-                            <input id="passwordReg" type="password"  maxlength="10" data-length="10" required />
-                            <label for="passwordReg">Password:</label>
-                        </div>
-                        <div class="input-field">
-                            <input id="idconsultorReg" type="password"  maxlength="10" data-length="10" required />
-                            <label for="idconsultorReg">Id de consultor: </label>
-                        </div>
-                        <div class="div-btnInicioSesion">
-                            <a id="btnRegistroEmail" class="btn waves-effect waves-light">Registrarse<i class="material-icons left">account_box</i></a>
-                        </div>                        
-                    </div>
-                    <div class="col s12 m12 div-btnRegistrarse">
-                        <a id="btnIniciarSesion" class="btn waves-effect waves-light">Iniciar Sesión<i class="material-icons right">send</i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- Modal AltaClinica -->
     <div id="modalAltaClinica" class="modal modal-registro">
@@ -232,7 +234,7 @@
                             <label for="cifAltaClinica">CIF:</label>
                         </div>
                         <div class="input-field">
-                            <input id="phoneAltaClinica" type="text" required />
+                            <input id="phoneAltaClinica" type="tel" required />
                             <label for="phoneAltaClinica">Teléfono:</label>
                         </div>
                         <div class="input-field">
@@ -247,12 +249,26 @@
                             <input id="managerAltaClinica" type="text" required />
                             <label for="managerAltaClinica">Nombre del Gerente:</label>
                         </div>
-                        <div class="input-field">
+                          <!--
+                       <div class="input-field">
                             <input id="statusAltaClinica" type="text" required />
-                            <label for="statusAltaClinica">Id:</label>
+                            <label for="statusAltaClinica">Estatus:</label>
                         </div>
+                          -->
+                          <input id="type" type="hidden" required />
+                          <label for="status">Estatus:</label>
+                          <form>
+                            <input type="radio" id="statusActive" name="status" value="active" checked>
+                            <label for="statusActive">Activa</label><br>
+                            <input type="radio" id="statusInactive" name="status" value="inactive">
+                            <label for="statusInactive">Inactiva</label><br>
+                            <input type="radio" id="statusStandby" name="status" value="standby">
+                            <label for="statusStandby">En espera</label>
+                          </form>
+                          
+                       
                         <div class="div-btnInicioSesion">
-                            <a id="btnCreateClinica" class="btn waves-effect waves-light">Guardar Clínica<i class="material-icons left">create</i></a>
+                            <a id="btnCreateClinica" onclick="" class="btn waves-effect waves-light">Guardar Clínica<i class="material-icons left">create</i></a>
                         </div>                      
                     </div>
                 </div>
@@ -377,10 +393,17 @@
                             <input id="mobileAltaPaciente" type="text" required />
                             <label for="mobileAltaPaciente">Móvil:</label>
                         </div>
-                        <div class="input-field">
-                            <input id="statusAltaPaciente" type="text" required />
-                            <label for="statusAltaPaciente">Estatus:</label>
-                        </div>
+                        
+                        <input id="typeForm" type="hidden" required />
+                        <label for="statusPaciente">Estatus:</label>
+                          <form>
+                            <input type="radio" id="statusActivePaciente" name="status" value="active" checked>
+                            <label for="statusActive">Activa</label><br>
+                            <input type="radio" id="statusInactivePaciente" name="status" value="inactive">
+                            <label for="statusInactive">Inactiva</label><br>
+                            <input type="radio" id="statusStandbyPaciente" name="status" value="standby">
+                            <label for="statusStandby">En espera</label>
+                          </form>
                         <!--
                         <div class="progress-panel">
                             <label for="btnUploadFile">Imagen:</label>
@@ -452,6 +475,7 @@
                         <div class="input-field">
                             <input id="statusAltaConsultor" type="text" required />
                             <label for="statusAltaConsultor">Estatus:</label>
+                            <input id="typeFormConsultor" type="hidden" required />
                         </div>
                         <div class="div-btnInicioSesion">
                             <a id="btnCreateConsultor" class="btn waves-effect waves-light">Guardar Consultor<i class="material-icons left">create</i></a>
