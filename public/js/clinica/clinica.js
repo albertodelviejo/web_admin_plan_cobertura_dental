@@ -21,7 +21,7 @@ class Clinica {
                     address: address,
                     manager: manager,
                     pacientes: [""],
-                    tikets: [""],
+                    tickets: [""],
                     offers: [""],
                     fecha_alta: firebase.firestore.FieldValue.serverTimestamp(),
                     status: status
