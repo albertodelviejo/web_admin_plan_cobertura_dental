@@ -239,7 +239,17 @@ class Consultor {
         $('#phoneAltaConsultor').val(post.data().phone_number)
         $('#dniAltaConsultor').val(post.data().id)
         $('#idConsultorAltaConsultor').val(post.data().idConsultor)
-        $('#statusAltaConsultor').val(post.data().status)
+        switch(post.data().status){
+            case "active":
+                $('#statusActivePaciente').prop("checked",true)
+            break
+            case "inactive":
+                $('#statusInactivePaciente').prop("checked",true)
+            break
+            case "standby":
+                $('#statusStandbyPaciente').prop("checked",true)
+            break
+        }
         $('.determinate').attr('style', `width: 0%`)
 
         $('typeFormConsultor').val('update')

@@ -391,15 +391,42 @@ updatePaciente(name,
         $('#surname1AltaPaciente').val(post.data().surname1) 
         $('#surname2AltaPaciente').val(post.data().surname2)
         $('#mailAltaPaciente').val(post.data().email)
-        $('#genderAltaPaciente').val(post.data().gender)
+        switch(post.data().gender){
+            case "male":
+                $('#maleActivePaciente').prop("checked",true)
+            break
+            case "female":
+                $('#femaleActivePaciente').prop("checked",true)
+            break
+            case "other":
+                $('#otherActivePaciente').prop("checked",true)
+            break
+        }
         $('#birthdayAltaPaciente').val(post.data().birthday)
         $('#addressAltaPaciente').val(post.data().address)
         $('#phoneAltaPaciente').val(post.data().phone_number)
-        $('#idtypeAltaPaciente').val(post.data().id_type)
+        switch(post.data().id_type){
+            case "DNI":
+                $('#dniActivePaciente').prop("checked",true)
+            break
+            case "Passport":
+                $('#passActivePaciente').prop("checked",true)
+            break
+            case "NIE":
+                $('#nieActivePaciente').prop("checked",true)
+            break
+        }
         $('#idAltaPaciente').val(post.data().id)
         $('#idclinicaAltaPaciente').val(post.data().idClinica)
         $('#idconsultorAltaPaciente').val(post.data().idConsultor)
-        $('#iscreditAltaPaciente').val(post.data().is_credit_plan)
+        switch(post.data().is_credit_plan){
+            case "true":
+                $('#iscredittruePaciente').prop("checked",true)
+            break
+            case "false":
+                $('#iscreditfalsePaciente').prop("checked",true)
+            break
+        }
         $('#maritalAltaPaciente').val(post.data().marital_status)
         $('#mobileAltaPaciente').val(post.data().mobile_number) 
         switch(post.data().status){

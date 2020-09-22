@@ -343,32 +343,39 @@
                             <label for="surname2AltaPaciente">Segundo apellido:</label>
                         </div>
                         <div class="input-field">
-                            <input id="mailAltaPaciente" type="text" required />
+                            <input id="mailAltaPaciente" type="email" required />
                             <label for="mailAltaPaciente">Email:</label>
                         </div>
+                        <label for="genderAltaPaciente">Género:</label>
+                          <form>
+                            <input type="radio" id="maleActivePaciente" name="gender" value="male" checked>
+                            <label for="maleActivePaciente">Hombre</label><br>
+                            <input type="radio" id="femaleActivePaciente" name="gender" value="female">
+                            <label for="femaleActivePaciente">Mujer</label><br>
+                            <input type="radio" id="otherActivePaciente" name="gender" value="other">
+                            <label for="otherActivePaciente">Otro</label>
+                          </form>
                         <div class="input-field">
-                            <input id="genderAltaPaciente" type="text" required />
-                            <label for="genderAltaPaciente">Género:</label>
+                            <label>Fecha de nacimiento:</label>
+                            <input type="date" id="birthdayAltaPaciente" name="birthday" required>
                         </div>
                         <div class="input-field">
-                            <input id="birthdayAltaPaciente" type="text" required />
-                            <label for="birthdayAltaPaciente">Fecha de nacimiento:</label>
-                        </div>
-                        <div class="input-field">
-                            <input id="addressAltaPaciente" type="text" required />
                             <label for="addressAltaPaciente">Dirección:</label>
+                            <input id="addressAltaPaciente" type="text" required />   
                         </div>
                         <div class="input-field">
-                            <input id="phoneAltaPaciente" type="text" required />
+                            <input id="phoneAltaPaciente" type="tel" required />
                             <label for="phoneAltaPaciente">Teléfono:</label>
                     </div>
-                    <div class="col s12 m6 registro-formulario">
-                        
-                        </div>
-                        <div class="input-field">
-                            <input id="idtypeAltaPaciente" type="text" required />
-                            <label for="idtypeAltaPaciente">Tipo de id:</label>
-                        </div>
+                        <label for="idtypeAltaPaciente">Tipo de id:</label>
+                          <form>
+                            <input type="radio" id="dniActivePaciente" name="idtype" value="DNI" checked>
+                            <label for="dniActivePaciente">DNI</label><br>
+                            <input type="radio" id="passActivePaciente" name="idtype" value="Passport">
+                            <label for="passActivePaciente">Passport</label><br>
+                            <input type="radio" id="nieActivePaciente" name="idtype" value="NIE">
+                            <label for="nieActivePaciente">NIE</label>
+                          </form>
                         <div class="input-field">
                             <input id="idAltaPaciente" type="text" required />
                             <label for="idAltaPaciente">Id:</label>
@@ -381,16 +388,19 @@
                             <input id="idconsultorAltaPaciente" type="text" required />
                             <label for="idconsultorAltaPaciente">Id del consultor asociado:</label>
                         </div>
-                        <div class="input-field">
-                            <input id="iscreditAltaPaciente" type="text" required />
-                            <label for="iscreditAltaPaciente">Credit Plan Dental:</label>
-                        </div>
+                        <label for="creditplanPaciente">Credit Plan:</label>
+                        <form>
+                            <input id="iscredittruePaciente" type="radio" name="iscreditplan" value="true" required />
+                            <label for="iscredittruePaciente">Si</label>
+                            <input id="iscreditfalsePaciente" type="radio" name="iscreditplan" value="false" required checked/>
+                            <label for="iscreditfalsePaciente">No</label>
+                        </form>
                         <div class="input-field">
                             <input id="maritalAltaPaciente" type="text" required />
                             <label for="maritalAltaPaciente">Estado Civil:</label>
                         </div>
                         <div class="input-field">
-                            <input id="mobileAltaPaciente" type="text" required />
+                            <input id="mobileAltaPaciente" type="tel" required />
                             <label for="mobileAltaPaciente">Móvil:</label>
                         </div>
                         
@@ -449,7 +459,7 @@
                             <label for="surname2AltaConsultor">Segundo apellido:</label>
                         </div>
                         <div class="input-field">
-                            <input id="mailAltaConsultor" type="text" required />
+                            <input id="mailAltaConsultor" type="email" required />
                             <label for="mailAltaConsultor">Email:</label>
                         </div>
                         <div class="input-field">
@@ -457,7 +467,7 @@
                             <label for="dniAltaConsultor">DNI:</label>
                         </div>
                         <div class="input-field">
-                            <input id="birthdayAltaConsultor" type="text" required />
+                            <input id="birthdayAltaConsultor" type="date" required />
                             <label for="birthdayAltaConsultor">Fecha de nacimiento:</label>
                         </div>
                         <div class="input-field">
@@ -472,11 +482,16 @@
                             <input id="idConsultorAltaConsultor" type="text" required />
                             <label for="idConsultorAltaConsultor">Id consultor:</label>
                         </div>
-                        <div class="input-field">
-                            <input id="statusAltaConsultor" type="text" required />
-                            <label for="statusAltaConsultor">Estatus:</label>
                             <input id="typeFormConsultor" type="hidden" required />
-                        </div>
+                            <label for="statusPaciente">Estatus:</label>
+                            <form>
+                              <input type="radio" id="statusActiveConsultor" name="status" value="active" checked>
+                              <label for="statusActiveConsultor">Activa</label><br>
+                              <input type="radio" id="statusInactiveConsultor" name="status" value="inactive">
+                              <label for="statusInactiveConsultor">Inactiva</label><br>
+                              <input type="radio" id="statusStandbyConsultor" name="status" value="standby">
+                              <label for="statusStandbyConsultor">En espera</label>
+                            </form>
                         <div class="div-btnInicioSesion">
                             <a id="btnCreateConsultor" class="btn waves-effect waves-light">Guardar Consultor<i class="material-icons left">create</i></a>
                         </div>                      

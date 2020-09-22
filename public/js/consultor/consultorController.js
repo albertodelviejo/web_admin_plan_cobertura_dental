@@ -30,7 +30,16 @@ $(() => {
         const phone_number = $('#phoneAltaConsultor').val()
         const dni = $('#dniAltaConsultor').val()
         const idConsultor = $('#idConsultorAltaConsultor').val()
-        const status = $('#statusAltaConsultor').val()
+        var status = ""
+
+        if($('#statusActivePaciente').prop("checked")){
+          status = "active"
+        }else if ($('#statusInactivePaciente').prop("checked")){
+          status = "inactive"
+        }else if ($('#statusStandbyPaciente').prop("checked")){
+          status = "standby"
+        }
+
         $('.determinate').attr('style', `width: 0%`)    
 
         if (name == "")

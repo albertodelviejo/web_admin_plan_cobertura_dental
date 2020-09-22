@@ -354,8 +354,8 @@ body {
   margin-left: 20px;
 }
 .modal-registro {
-  width: 90% !important;
-  height: 90%;
+  width: 100% !important;
+  height: 100%;
 }
 .registro-bienvenida {
   text-align: center;

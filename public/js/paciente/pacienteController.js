@@ -24,15 +24,34 @@ $(() => {
         const surname1 = $('#surname1AltaPaciente').val() 
         const surname2 = $('#surname2AltaPaciente').val()
         const email = $('#mailAltaPaciente').val()
-        const gender = $('#genderAltaPaciente').val()
+        var gender = ""
+        if($('#maleActivePaciente').prop("checked")){
+          gender = "male"
+        }else if ($('#femaleActivePaciente').prop("checked")){
+          gender = "female"
+        }else if ($('#otherActivePaciente').prop("checked")){
+          gender = "other"
+        }
         const birthday = $('#birthdayAltaPaciente').val()
         const address = $('#addressAltaPaciente').val()
         const phone_number = $('#phoneAltaPaciente').val()
-        const id_type = $('#idtypeAltaPaciente').val()
+        const id_type = ""
+        if($('#dniActivePaciente').prop("checked")){
+          id_type = "DNI"
+        }else if ($('#passActivePaciente').prop("checked")){
+          id_type = "Passport"
+        }else if ($('#nieActivePaciente').prop("checked")){
+          id_type = "NIE"
+        }
         const id = $('#idAltaPaciente').val()
         const idClinica = $('#idclinicaAltaPaciente').val()
         const idConsultor = $('#idconsultorAltaPaciente').val()
-        const is_credit_plan = $('#iscreditAltaPaciente').val()
+        const is_credit_plan = ""
+        if($('#iscredittruePaciente').prop("checked")){
+          is_credit_plan = "true"
+        }else if ($('#iscreditfalsePaciente').prop("checked")){
+          is_credit_plan = "false"
+        }
         const marital_status = $('#maritalAltaPaciente').val()
         const mobile_number = $('#mobileAltaPaciente').val() 
         const status = ""
