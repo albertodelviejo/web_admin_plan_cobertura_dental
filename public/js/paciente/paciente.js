@@ -148,6 +148,9 @@ updatePaciente(name,
                        "ID",
                        post.data().id
                    )
+                   $("#section-title").text("Pacientes")
+                   $("#menu").show()
+                   $("#clinicas").attr('class', 'posts');
                    $('#clinicas').append(postHtml) 
            })
         }

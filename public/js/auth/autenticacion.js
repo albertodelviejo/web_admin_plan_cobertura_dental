@@ -10,6 +10,9 @@ class Autenticacion {
       if(result.user.emailVerified){
         Materialize.toast(`Bienvenido`, 5000)
         $('#avatar').attr('src', 'imagenes/usuario_auth.png')
+        $('#userlabel').text(result.user.displayname)
+        $('#typeuserlabel').text("Usuario Administración")
+
       }else{
         firebase.auth().signOut()
         Materialize.toast(`Por favor, realize la verificación de la cuenta`, 5000)

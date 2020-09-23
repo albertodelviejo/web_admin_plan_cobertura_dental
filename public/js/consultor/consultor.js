@@ -91,6 +91,9 @@ class Consultor {
                 "Id Consultor",
                 post.data().idConsultor
                )
+               $("#section-title").text("Consultores")
+               $("#menu").show()
+               $("#clinicas").attr('class', 'posts');
                $('#clinicas').append(postHtml) 
            })
         }
