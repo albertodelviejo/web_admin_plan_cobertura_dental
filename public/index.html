@@ -34,14 +34,42 @@
             
     </header>
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <nav id="menu" class="side-menu">
-        <input class="input" type="text">
+    <nav id="menuClinica" class="side-menu">
+        <input id="searchValueClinica" class="input" type="text">
+        <button id="btnSearchNameClinica" class="search-button">Buscar nombre</button>
         <ul>
         <li id="btnAltaClinica" class="item"><a id="">Dar de alta</a></li>                     
         <li id="btnTodasClinicas" class="item"><a id="">Todas</a></li>
         <li id="btnActivasClinicas" class="item"><a id="">Activas</a></li>
         <li id="btnInactivasClinicas" class="item"><a id="">Inactivas</a></li>
         <li id="btnEsperaClinicas" class="item"><a id="">En espera</a></li>
+    </nav>
+    <nav id="menuPaciente" class="side-menu">
+        <input id="searchValuePaciente" class="input" type="text">
+        <button id="btnSearchNamePaciente" class="search-button">Buscar nombre</button>
+        <ul>
+        <li id="btnAltaPaciente" class="item"><a id="">Dar de alta</a></li>                     
+        <li id="btnTodosPacientes" class="item"><a id="">Todos</a></li>
+        <li id="btnActivosPacientes" class="item"><a id="">Activos</a></li>
+        <li id="btnInactivosPacientes" class="item"><a id="">Inactivos</a></li>
+        <li id="btnEsperaPacientes" class="item"><a id="">En espera</a></li>
+    </nav>
+    <nav id="menuConsultor" class="side-menu">
+        <input id="searchValueConsultor" class="input" type="text">
+        <button id="btnSearchNameConsultor" class="search-button">Buscar nombre</button>
+        <ul>
+        <li id="btnAltaConsultor" class="item"><a id="">Dar de alta</a></li>                     
+        <li id="btnTodosConsultores" class="item"><a id="">Todas</a></li>
+        <li id="btnActivosConsultores" class="item"><a id="">Activas</a></li>
+        <li id="btnInactivosConsultores" class="item"><a id="">Inactivas</a></li>
+        <li id="btnEsperaConsultores" class="item"><a id="">En espera</a></li>
+    </nav>
+    <nav id="menuUsuario" class="side-menu">
+        <input id="searchValueConsultor" class="input" type="text">
+        <button id="btnSearchNameConsultor" class="search-button">Buscar nombre</button>
+        <ul>
+        <li id="btnAltaUsuario" class="item"><a id="">Dar de alta</a></li>                     
+        <li id="btnTodosUsuario" class="item"><a id="">Todas</a></li>
     </nav>
     <h3 class="section-title" id="section-title"></h3>
     <section class="menu-center" id="clinicas">        
@@ -69,7 +97,7 @@
                 <h5>Proveedores</h5>
             </div>
         </article>
-        <article class="menu-div">
+        <article class="menu-div" onclick=call("usuario")>
             <img class="menu-div-img" src="imagenes/usuarios.png" alt="Clinicas">
             <div class="post-titulo">
                 <h5>Usuarios</h5>
@@ -150,9 +178,16 @@
                                 <label for="passwordReg">Password:</label>
                             </div>
                             <div class="input-field">
-                                <input id="idconsultorReg" type="password"  maxlength="10" data-length="10" required />
-                                <label for="idconsultorReg">Id de consultor: </label>
+                                <input id="dniReg" type="text"  maxlength="10" data-length="10" required />
+                                <label for="dniReg">Dni:</label>
                             </div>
+                            <label for="isAdmin">Administrador:</label>
+                          <form>
+                            <input type="radio" id="optionAdminTrue" name="isadmin" value="true" checked>
+                            <label for="optionAdminTrue">Si</label><br>
+                            <input type="radio" id="optionAdminFalse" name="isadmin" value="false">
+                            <label for="optionAdminFalse">No</label><br>
+                          </form>
                             <div class="div-btnInicioSesion">
                                 <a id="btnRegistroEmail" class="btn waves-effect waves-light">Registrarse<i class="material-icons left">account_box</i></a>
                             </div>                        
@@ -637,6 +672,7 @@
 
 <script>
     function call(section){
+        if($('#btnInicioSesion').text() != "Iniciar Sesión"){
         switch(section){
             case "clinica":
                 const clinica = new Clinica()
@@ -650,7 +686,13 @@
                 const consultores = new Consultor()
                 consultores.showConsultorAll()
             break
+            case "usuario":
+                const usuario = new Usuario()
+                usuario.showUsuarioAll()
         }  
+    }else{
+            Materialize.toast(`Debe iniciar sesión para consultar`, 4000)
+        }
     } 
 </script>
 <script>

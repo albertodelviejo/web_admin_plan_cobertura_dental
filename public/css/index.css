@@ -53,6 +53,15 @@
   color: #fff;
   font-size: 17px;
 }
+
+.search-button{
+background-color: #126798;
+box-shadow: none;
+width: fit-content;
+border: none;
+text-align: center;
+}
+
 body {
   font-family: 'Allerta', sans-serif;
 }

@@ -245,6 +245,13 @@ $('#btnSearchid').click(() => {
 
 })
 
+$("#btnSearchNamePaciente").click(() => {
+  const value = $('#searchValuePaciente').val()
+  
+  const paciente = new Paciente()
+  paciente.showPacienteByName(value)
+})
+
     
 
       $('#btnTodosPacientes').click(() => {

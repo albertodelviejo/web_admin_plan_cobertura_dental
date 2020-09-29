@@ -198,6 +198,13 @@ $(() => {
         }
     $('#modalId').modal('close')
   })
+
+  $("#btnSearchNameConsultor").click(() => {
+    const value = $('#searchValueConsultor').val()
+    
+    const consultor = new Consultor()
+    consultor.showConsultorByName(value)
+  })
   
       $('#btnTodosConsultores').click(() => {
 

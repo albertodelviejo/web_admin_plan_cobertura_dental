@@ -165,6 +165,12 @@ $(() => {
         }       
       })
 
+      $("#btnSearchNameClinica").click(() => {
+        const value = $('#searchValueClinica').val()
+        
+        const clinica = new Clinica()
+        clinica.showClinicaByName(value)
+      })
       
       $('#btnActivasClinicas').click(() => {
 

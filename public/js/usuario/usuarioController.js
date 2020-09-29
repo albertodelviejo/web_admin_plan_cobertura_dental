@@ -5,5 +5,4 @@ $(() => {
         $('#modalRegistro').modal('open');
     });
 
-
 })

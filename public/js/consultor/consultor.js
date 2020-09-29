@@ -92,8 +92,39 @@ class Consultor {
                 post.data().idConsultor
                )
                $("#section-title").text("Consultores")
-               $("#menu").show()
+               $("#menuConsultor").show()
                $("#clinicas").attr('class', 'posts');
+               $('#clinicas').append(postHtml) 
+           })
+        }
+    })
+    }
+
+    showConsultorByName(name){
+        this.db.collection('consultores')
+        .where('name', '==', name)
+    .onSnapshot(querySnapshot => {
+        $('#clinicas').empty()
+        if(querySnapshot.empty){
+            $('#clinicas').append(`<h4>No se han encontrado resultados</h4>`)//this.obtenerTemplatePostVacio())
+        }else{
+           querySnapshot.forEach(post => {
+               const title = post.data().name + post.data().surname1 + post.data().surname2
+               let postHtml = this.obtenerPostTemplate(
+                title,
+                "DNI",
+                post.data().id,
+                "Teléfono",
+                post.data().phone,
+                "Email",
+                post.data().mail,
+                "Dirección",
+                post.data().address,
+                "Estatus",
+                post.data().status,
+                "Id Consultor",
+                post.data().idConsultor
+               )
                $('#clinicas').append(postHtml) 
            })
         }
@@ -267,7 +298,6 @@ class Consultor {
         this.db.collection('consultores')
         .where('idConsultor', '==', idConsultor)
     .onSnapshot(querySnapshot => {
-        $('#clinicas').empty()
         if(querySnapshot.empty){
             $('#clinicas').append(`<h2>Error<h3>`)//this.obtenerTemplatePostVacio())
         }else{
@@ -457,8 +487,8 @@ showTicketByIdConsultorByTopic(idConsultor, topic){
                 post.data().idClinica,
                 "Id Consultor",
                 post.data().idConsultor,
-                "DNI Paciente",
-                post.data().idPaciente,
+                "Telefono",
+                post.data().phone_number,
                 "Puntos ganados",
                 post.data().points,
                 "Fecha",
@@ -555,30 +585,7 @@ showTicketByIdConsultorByClinica(idConsultor, idClinica){
               <div class="post-titulo">
                   <h5>${title}</h5>
               </div>
-              <div class="row">
-                  <div class="col m6">
-                      ${field1title}: ${field1}
-                  </div>
-                  <div class="col m6">
-                      ${field2title}: ${field2}
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col m6">
-                      ${field3title}: ${field3}
-                  </div>
-                  <div class="col m6">
-                      ${field4title}: ${field4}
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col m6">
-                  ${field5title}: ${field5}
-                  </div>
-                  <div class="col m6">
-                  ${field6title}: ${field6}
-                  </div>        
-              </div>
+              <p>DNI: ${field1} Teléfono: ${field3} Email: ${field2} Id de Consultor: ${field6}</p>
               <script>
                 function test(id){
                  const consultor = new Consultor();

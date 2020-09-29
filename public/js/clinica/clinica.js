@@ -97,7 +97,7 @@ class Clinica {
                 post.data().status
                )
                $("#section-title").text("Clínicas")
-               $("#menu").show()
+               $("#menuClinica").show()
                $("#clinicas").attr('class', 'posts');
                $('#clinicas').append(postHtml) 
 
@@ -177,9 +177,7 @@ class Clinica {
         this.db.collection('clinicas')
         .where('cif', '==', cif)
     .onSnapshot(querySnapshot => {
-        $('#clinicas').empty()
         if(querySnapshot.empty){
-            $('#clinicas').append(`<h2>No se ha encontrado ninguna clinica<h3>`)//this.obtenerTemplatePostVacio())
         }else{
            querySnapshot.forEach(post => {
             $('#modaltitle').text(post.data().name)

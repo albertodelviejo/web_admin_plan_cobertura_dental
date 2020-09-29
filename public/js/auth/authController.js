@@ -6,9 +6,17 @@ $(() => {
         const nombres = $('#nombreContactoReg').val();
         const email = $('#emailContactoReg').val();
         const password = $('#passwordReg').val();
-        const idConsultor = $('#idconsultorReg').val();
+        const dni = $('#dniReg').val();
+        var isAdmin = "";
+
+        if($('#optionAdminTrue').prop("checked")){
+            isAdmin = true;
+          }else{
+            isAdmin = false;
+          }
+
         const auth = new Autenticacion()
-        auth.crearCuentaEmailPass(email, password, nombres, idConsultor)
+        auth.crearCuentaEmailPass(email, password, nombres, dni, isAdmin)
     });
 
     $("#btnInicioEmail").click(() => {
