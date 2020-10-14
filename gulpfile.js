@@ -48,7 +48,7 @@ gulp.task('default', (callback) => {
 gulp.task('useref', () => {
 	return gulp.src('app/**/*.html')
 	.pipe(useref())
-	.pipe(gulpIf('*.js', minify({mangle: false})))
+	// .pipe('*.js')
 	.pipe(gulpIf('*.css', minifyCSS()))
 	.pipe(gulpIf('*.html', htmlmin({collapseWhitespace: true})))	
 	.pipe(gulp.dest('dist'))
@@ -72,7 +72,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('build', (callback) => {
-	runSequence('clean', 'stylus'
-		['useref', 'images', 'fonts'],
+	runSequence(['stylus',
+		'useref', 'images', 'fonts'],
 		callback)
 });

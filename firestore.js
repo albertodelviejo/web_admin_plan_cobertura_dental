@@ -1,7 +1,7 @@
 class PostDAO {
     constructor () {
-      this.db = firebase.firestore()
-      const settings = { timestampsInSnapshots: true }
+      this.db = firebase.firestore();
+      const settings = { timestampsInSnapshots: true };
       this.db.settings(settings)
     }
   
@@ -11,7 +11,7 @@ class PostDAO {
         descripcion: post.descripcion,
         autor: post.autor,
         fecha: firebase.firestore.FieldValue.serverTimestamp()
-      })
+      });
   
       console.log('Se crea post')
     }
@@ -141,7 +141,7 @@ class PostDAO {
   }
   
   $(() => {
-    const userDAO = new PostDAO()
+    const userDAO = new PostDAO();
   
     $('#btnAdd').click(() => {
       userDAO.add(
@@ -152,11 +152,11 @@ class PostDAO {
         },
         '14638228'
       )
-    })
+    });
   
     $('#btnBatch').click(() => {
       userDAO.batch()
-    })
+    });
   
     $('#btnAddKey').click(() => {
       userDAO.addWithKey({
@@ -164,15 +164,15 @@ class PostDAO {
         descripcion: 'Test1 Desc',
         autor: 'juan@gmail.com'
       })
-    })
+    });
   
     $('#btnAddWithMerge').click(() => {
       userDAO.addWithMerge('ImageLink', '14638228')
-    })
+    });
   
     $('#btnupdate').click(() => {
       userDAO.update('ImageLinkUpdate', '14638228')
-    })
+    });
   
     $('#btnUpdateObject').click(() => {
       userDAO.updateObject('14638228')
@@ -184,21 +184,21 @@ class PostDAO {
   
     $('#btnDelete').click(() => {
       userDAO.delete('14638228')
-    })
+    });
   
     $('#btnQuerySingle').click(() => {
       userDAO.querySingle('14638228')
-    })
+    });
   
     $('#queryByTitulo').click(() => {
       userDAO.queryByTitulo('Test1')
-    })
+    });
   
     $('#queryAllPosts').click(() => {
       userDAO.allPosts()
-    })
+    });
   
     $('#queryPostsByTituloAndAutor').click(() => {
       userDAO.queryPostsByTituloAndAutor('Test1', 'juan@gmail.com')
     })
-  })
+  });
