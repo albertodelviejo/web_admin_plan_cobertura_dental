@@ -200,29 +200,18 @@ class Paciente {
                 } else {
                     querySnapshot.forEach(post => {
                         const title = post.data().name + " " + post.data().surname1 + " " + post.data().surname2
-                        var creditPlan = "";
-                        if (post.data().is_credit_plan) {
-                            creditPlan = "Sí"
-                        } else {
-                            creditPlan = "No"
-                        }
                         let postHtml = this.obtenerPostTemplate(
                             title,
-                            "Dirección",
-                            post.data().address,
-                            "Email",
-                            post.data().email,
-                            "Teléfono",
+                            post.data().name,
+                            post.data().surname1,
+                            post.data().surname2,
                             post.data().phone_number,
-                            "Puntos",
-                            post.data().points,
-                            "Credit Plan",
-                            creditPlan,
-                            "Saldo Pagado",
-                            post.data().payed_balance + "€",
-                            "ID",
-                            post.data().id
-                        )
+                            post.data().address,
+                            post.data().email,
+                            post.data().is_credit_plan,
+                            post.data().id,
+                            post.data().status,
+                        );
                         $('#clinicas').append(postHtml)
                     });
                     paginate_view("#clinicas");
@@ -241,26 +230,18 @@ class Paciente {
                     querySnapshot.forEach(post => {
                         const title = post.data().name + post.data().surname1 + post.data().surname2
                         var creditPlan = "";
-                        if (post.data().is_credit_plan) {
-                            creditPlan = "Sí"
-                        } else {
-                            creditPlan = "No"
-                        }
                         let postHtml = this.obtenerPostTemplate(
                             title,
-                            "Dirección",
-                            post.data().address,
-                            "Email",
-                            post.data().email,
-                            "Teléfono",
+                            post.data().name,
+                            post.data().surname1,
+                            post.data().surname2,
                             post.data().phone_number,
-                            "ID",
+                            post.data().address,
+                            post.data().email,
+                            post.data().is_credit_plan,
                             post.data().id,
-                            "Credit Plan",
-                            creditPlan,
-                            "Saldo Pagado",
-                            post.data().payed_balance + "€",
-                        )
+                            post.data().status,
+                        );
                         $('#clinicas').append(postHtml)
                     });
                     paginate_view("#clinicas");
@@ -278,27 +259,18 @@ class Paciente {
                 } else {
                     querySnapshot.forEach(post => {
                         const title = post.data().name + post.data().surname1 + post.data().surname2
-                        var creditPlan = "";
-                        if (post.data().is_credit_plan) {
-                            creditPlan = "Sí"
-                        } else {
-                            creditPlan = "No"
-                        }
                         let postHtml = this.obtenerPostTemplate(
                             title,
-                            "Dirección",
-                            post.data().address,
-                            "Email",
-                            post.data().email,
-                            "Teléfono",
+                            post.data().name,
+                            post.data().surname1,
+                            post.data().surname2,
                             post.data().phone_number,
-                            "ID",
+                            post.data().address,
+                            post.data().email,
+                            post.data().is_credit_plan,
                             post.data().id,
-                            "Credit Plan",
-                            creditPlan,
-                            "Saldo Pagado",
-                            post.data().payed_balance + "€",
-                        )
+                            post.data().status,
+                        );
                         $('#clinicas').append(postHtml)
                     });
                     paginate_view("#clinicas");
@@ -316,27 +288,18 @@ class Paciente {
                 } else {
                     querySnapshot.forEach(post => {
                         const title = post.data().name + post.data().surname1 + post.data().surname2
-                        var creditPlan = "";
-                        if (post.data().is_credit_plan) {
-                            creditPlan = "Sí"
-                        } else {
-                            creditPlan = "No"
-                        }
                         let postHtml = this.obtenerPostTemplate(
                             title,
-                            "Dirección",
-                            post.data().address,
-                            "Email",
-                            post.data().email,
-                            "Teléfono",
+                            post.data().name,
+                            post.data().surname1,
+                            post.data().surname2,
                             post.data().phone_number,
-                            "ID",
+                            post.data().address,
+                            post.data().email,
+                            post.data().is_credit_plan,
                             post.data().id,
-                            "Credit Plan",
-                            creditPlan,
-                            "Saldo Pagado",
-                            post.data().payed_balance + "€",
-                        )
+                            post.data().status,
+                        );
                         $('#clinicas').append(postHtml)
                     });
                     paginate_view("#clinicas");
@@ -354,27 +317,18 @@ class Paciente {
                 } else {
                     querySnapshot.forEach(post => {
                         const title = post.data().name + post.data().surname1 + post.data().surname2
-                        var creditPlan = "";
-                        if (post.data().is_credit_plan) {
-                            creditPlan = "Sí"
-                        } else {
-                            creditPlan = "No"
-                        }
                         let postHtml = this.obtenerPostTemplate(
                             title,
-                            "Dirección",
-                            post.data().address,
-                            "Email",
-                            post.data().email,
-                            "Teléfono",
+                            post.data().name,
+                            post.data().surname1,
+                            post.data().surname2,
                             post.data().phone_number,
-                            "ID",
+                            post.data().address,
+                            post.data().email,
+                            post.data().is_credit_plan,
                             post.data().id,
-                            "Credit Plan",
-                            creditPlan,
-                            "Saldo Pagado",
-                            post.data().payed_balance + "€",
-                        )
+                            post.data().status,
+                        );
                         $('#clinicas').append(postHtml)
                     });
                     paginate_view("#clinicas");
@@ -392,27 +346,18 @@ class Paciente {
                 } else {
                     querySnapshot.forEach(post => {
                         const title = post.data().name + post.data().surname1 + post.data().surname2
-                        var creditPlan = "";
-                        if (post.data().is_credit_plan) {
-                            creditPlan = "Sí"
-                        } else {
-                            creditPlan = "No"
-                        }
                         let postHtml = this.obtenerPostTemplate(
                             title,
-                            "Dirección",
-                            post.data().address,
-                            "Email",
-                            post.data().email,
-                            "Teléfono",
+                            post.data().name,
+                            post.data().surname1,
+                            post.data().surname2,
                             post.data().phone_number,
-                            "ID",
+                            post.data().address,
+                            post.data().email,
+                            post.data().is_credit_plan,
                             post.data().id,
-                            "Credit Plan",
-                            creditPlan,
-                            "Saldo Pagado",
-                            post.data().payed_balance + "€",
-                        )
+                            post.data().status,
+                        );
                         $('#clinicas').append(postHtml)
                     });
                     paginate_view("#clinicas");
@@ -430,27 +375,18 @@ class Paciente {
                 } else {
                     querySnapshot.forEach(post => {
                         const title = post.data().name + post.data().surname1 + post.data().surname2
-                        var creditPlan = "";
-                        if (post.data().is_credit_plan) {
-                            creditPlan = "Sí"
-                        } else {
-                            creditPlan = "No"
-                        }
                         let postHtml = this.obtenerPostTemplate(
                             title,
-                            "Dirección",
-                            post.data().address,
-                            "Email",
-                            post.data().email,
-                            "Teléfono",
+                            post.data().name,
+                            post.data().surname1,
+                            post.data().surname2,
                             post.data().phone_number,
-                            "ID",
+                            post.data().address,
+                            post.data().email,
+                            post.data().is_credit_plan,
                             post.data().id,
-                            "Credit Plan",
-                            creditPlan,
-                            "Saldo Pagado",
-                            post.data().payed_balance + "€",
-                        )
+                            post.data().status,
+                        );
                         $('#clinicas').append(postHtml)
                     });
                     paginate_view("#clinicas");
