@@ -179,6 +179,7 @@ class Paciente {
                             post.data().is_credit_plan,
                             post.data().id,
                             post.data().status,
+                            post.data().url,
                         );
                         $("#section-title").text("Pacientes")
                         $("#menuPaciente").show();
@@ -211,6 +212,7 @@ class Paciente {
                             post.data().is_credit_plan,
                             post.data().id,
                             post.data().status,
+                            post.data().url,
                         );
                         $('#clinicas').append(postHtml)
                     });
@@ -241,6 +243,7 @@ class Paciente {
                             post.data().is_credit_plan,
                             post.data().id,
                             post.data().status,
+                            post.data().url,
                         );
                         $('#clinicas').append(postHtml)
                     });
@@ -270,6 +273,7 @@ class Paciente {
                             post.data().is_credit_plan,
                             post.data().id,
                             post.data().status,
+                            post.data().url,
                         );
                         $('#clinicas').append(postHtml)
                     });
@@ -299,6 +303,7 @@ class Paciente {
                             post.data().is_credit_plan,
                             post.data().id,
                             post.data().status,
+                            post.data().url,
                         );
                         $('#clinicas').append(postHtml)
                     });
@@ -328,6 +333,7 @@ class Paciente {
                             post.data().is_credit_plan,
                             post.data().id,
                             post.data().status,
+                            post.data().url,
                         );
                         $('#clinicas').append(postHtml)
                     });
@@ -357,6 +363,7 @@ class Paciente {
                             post.data().is_credit_plan,
                             post.data().id,
                             post.data().status,
+                            post.data().url,
                         );
                         $('#clinicas').append(postHtml)
                     });
@@ -386,6 +393,7 @@ class Paciente {
                             post.data().is_credit_plan,
                             post.data().id,
                             post.data().status,
+                            post.data().url,
                         );
                         $('#clinicas').append(postHtml)
                     });
@@ -498,6 +506,7 @@ class Paciente {
         creditPlan,
         id,
         status,
+        patient_url
     ) {
         return `<article class="post">
     <div class="card">
@@ -514,7 +523,9 @@ class Paciente {
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12 col-md-3 registro-bienvenida">
-
+                        <div class="text-center mt-5">
+                        <a class="btn btn-primary mt-5" href="${patient_url}" target="_blank" >Añadir cita</a>
+                        </div>
                     </div>
                     <div class="col-sm-12 col-md-9 registro-formulario">
                         <div class="col s4 m6">
